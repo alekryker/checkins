@@ -1275,40 +1275,33 @@ function submitCheckin() {
    * ทำให้ callback ไม่เสถียร
    *************************************************/
 
-  setTimeout(
+setTimeout(
+  () => {
 
-    () => {
+    setLoading(false);
 
-      setLoading(
-        false
-      );
+    showOk(
+      '✅ เช็คอินสำเร็จ<br>' +
+      'กำลังปิดหน้าต่าง...'
+    );
 
+    $('checkinBtn').textContent =
+      '✓ เช็คอินเรียบร้อย';
 
-      showOk(
+    $('checkinBtn').disabled =
+      true;
 
-        '✅ เช็คอินสำเร็จ<br>' +
+    setTimeout(() => {
 
-        'ส่งข้อมูลบันทึกเวลาเข้างานเรียบร้อยแล้ว'
+      if (liff.isInClient()) {
+        liff.closeWindow();
+      }
 
-      );
+    }, 1200);
 
-
-      $('checkinBtn')
-        .textContent =
-
-        '✓ เช็คอินเรียบร้อย';
-
-
-      $('checkinBtn')
-        .disabled =
-
-        true;
-
-    },
-
-    2500
-
-  );
+  },
+  2500
+);
 
 
   /*************************************************

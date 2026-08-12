@@ -2680,192 +2680,184 @@ async function sendFlex(result){
       },
 
 
-      header:{
+header:{
 
-        type:'box',
+  type:'box',
 
-        layout:'vertical',
+  layout:'vertical',
 
-        paddingAll:'0px',
+  paddingAll:'0px',
 
-        contents:[
+  contents:[
 
-          {
-            type:'box',
+    // แดงดำ
+    {
+      type:'box',
+      layout:'vertical',
 
-            layout:'vertical',
+      backgroundColor:'#170006',
 
-            backgroundColor:'#240008',
+      paddingStart:'20px',
+      paddingEnd:'20px',
+      paddingTop:'16px',
+      paddingBottom:'5px',
 
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'16px',
-            paddingBottom:'7px',
+      contents:[
+        {
+          type:'text',
 
-            contents:[
+          text:'SLAY ROIET',
 
-              {
-                type:'text',
-                text:'SLAY ROIET',
-                color:'#FF7896',
-                size:'xs',
-                weight:'bold'
-              }
+          color:'#FF94AB',
 
-            ]
+          size:'xs',
 
-          },
+          weight:'bold'
+        }
+      ]
+    },
 
 
-          {
-            type:'box',
+    // แดงไวน์เข้ม
+    {
+      type:'box',
+      layout:'vertical',
 
-            layout:'horizontal',
+      backgroundColor:'#36000F',
 
-            backgroundColor:'#650019',
+      paddingStart:'20px',
+      paddingEnd:'20px',
+      paddingTop:'4px',
+      paddingBottom:'4px',
 
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'5px',
-            paddingBottom:'7px',
+      contents:[
+        {
+          type:'text',
 
-            contents:[
+          text:
+            isCheckout
+            ? 'CHECK OUT'
+            : 'CHECK IN',
 
-              {
-                type:'text',
+          color:'#FFFFFF',
 
-                text:
+          size:'xxl',
 
-                  isCheckout
-                  ? 'CHECK OUT'
-                  : 'CHECK IN',
+          weight:'bold'
+        }
+      ]
+    },
 
-                color:'#FFFFFF',
-                size:'xxl',
-                weight:'bold',
-                flex:1
-              },
 
-              {
-                type:'text',
-                text:'✓',
-                color:'#FFFFFF',
-                size:'xl',
-                weight:'bold',
-                align:'end'
-              }
+    // แดงไวน์
+    {
+      type:'box',
+      layout:'horizontal',
 
-            ]
+      backgroundColor:'#62001D',
 
-          },
+      paddingStart:'20px',
+      paddingEnd:'20px',
+      paddingTop:'5px',
+      paddingBottom:'5px',
 
+      alignItems:'center',
 
-          {
-            type:'box',
+      contents:[
 
-            layout:'vertical',
+        {
+          type:'text',
 
-            backgroundColor:'#D7194A',
+          text:
+            isCheckout
+            ? 'ลงเวลาออกงาน'
+            : 'ลงเวลาเข้างาน',
 
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'7px',
-            paddingBottom:'13px',
+          color:'#FFD5DF',
 
-            contents:[
+          size:'xs',
 
-              {
-                type:'text',
+          weight:'bold',
 
-                text:
-                  isCheckout
-                  ? 'ลงเวลาออกงาน'
-                  : 'ลงเวลาเข้างาน',
+          flex:1
+        },
 
-                color:'#FFFFFF',
-                size:'xs',
-                weight:'bold'
-              }
+        {
+          type:'text',
 
-            ]
+          text:'✓',
 
-          }
+          color:'#FFFFFF',
 
-        ]
+          size:'lg',
 
-      },
+          weight:'bold',
 
+          align:'end'
+        }
 
-      body:{
+      ]
+    },
 
-        type:'box',
 
-        layout:'vertical',
+    // แดงสด
+    {
+      type:'box',
+      layout:'vertical',
 
-        paddingAll:'20px',
+      backgroundColor:'#A90032',
 
-        spacing:'md',
+      paddingStart:'20px',
+      paddingEnd:'20px',
+      paddingTop:'5px',
+      paddingBottom:'5px',
 
-        contents:
-          body
+      contents:[
+        {
+          type:'text',
 
-      },
+          text:'STAFF ATTENDANCE',
 
+          color:'#FFE8EE',
 
-      footer:{
+          size:'xxs',
 
-        type:'box',
+          weight:'bold'
+        }
+      ]
+    },
 
-        layout:'vertical',
 
-        paddingAll:'16px',
+    // แดงชมพู
+    {
+      type:'box',
+      layout:'vertical',
 
-        contents:[
+      backgroundColor:'#D7194A',
 
-          {
-            type:'button',
+      paddingStart:'20px',
+      paddingEnd:'20px',
+      paddingTop:'5px',
+      paddingBottom:'12px',
 
-            style:'primary',
+      contents:[
+        {
+          type:'text',
 
-            height:'sm',
+          text:'SLAY ROIET',
 
-            color:'#D7194A',
+          color:'#FFFFFF',
 
-            action:{
+          size:'xxs',
 
-              type:'uri',
-
-              label:
-
-                isCheckout
-
-                ? 'เช็คชื่อเข้างาน'
-
-                : 'ลงชื่อออกงาน',
-
-              uri:
-                LIFF_URL
-
-            }
-
-          },
-
-          {
-            type:'text',
-            text:'SLAY ROIET · STAFF',
-            size:'xxs',
-            color:'#BBBBBB',
-            align:'center',
-            margin:'md'
-          }
-
-        ]
-
-      }
-
+          weight:'bold'
+        }
+      ]
     }
 
-  };
+  ]
+
+},
 
 
   await liff.sendMessages([

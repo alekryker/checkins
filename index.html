@@ -1655,95 +1655,47 @@ async function waitForResult(
  * FLEX
  *************************************************/
 
-async function sendFlex(
-  result
-){
+async function sendFlex(result){
 
-  if(
-    !liff.isInClient()
-  ){
-
+  if(!liff.isInClient()){
     throw new Error(
       'บันทึกสำเร็จ แต่ต้องเปิดผ่านแอป LINE เพื่อส่ง Flex'
     );
-
   }
 
-
   const isCheckout =
-    result.actionType ===
-    'checkout';
-
+    result.actionType === 'checkout';
 
   const name =
     result.name ||
     profile.displayName ||
     'พนักงาน';
 
-
-  const accent1 =
-    isCheckout
-
-    ? '#1B1026'
-
-    : '#091F19';
-
-
-  const accent2 =
-    isCheckout
-
-    ? '#5C174B'
-
-    : '#0B5D46';
-
-
-  const accent3 =
-    isCheckout
-
-    ? '#B81746'
-
-    : '#18A974';
-
-
   const body = [
 
     {
-
       type:'text',
-
       text:name,
-
       size:'xl',
-
       weight:'bold',
-
       color:'#111111',
-
       wrap:true
-
     },
 
     {
-
       type:'separator',
-
       margin:'lg',
-
-      color:'#EEEEEE'
-
+      color:'#F0F0F0'
     }
 
   ];
 
 
-
-  /***********************************************
+  /*************************************************
    * CHECK IN
-   ***********************************************/
+   *************************************************/
 
-  if(
-    !isCheckout
-  ){
+  if(!isCheckout){
 
     body.push(
 
@@ -1758,57 +1710,48 @@ async function sendFlex(
       ),
 
       {
-
         type:'box',
-
         layout:'horizontal',
-
         margin:'lg',
-
         paddingAll:'14px',
-
-        cornerRadius:'15px',
-
-        backgroundColor:'#EAF9F3',
+        cornerRadius:'16px',
+        backgroundColor:'#FFF0F3',
+        alignItems:'center',
 
         contents:[
 
           {
+            type:'box',
+            layout:'vertical',
+            width:'34px',
+            height:'34px',
+            cornerRadius:'17px',
+            backgroundColor:'#D7194A',
+            justifyContent:'center',
+            alignItems:'center',
 
-            type:'text',
-
-            text:'✓',
-
-            color:'#18A974',
-
-            size:'lg',
-
-            weight:'bold',
-
-            flex:0
-
+            contents:[
+              {
+                type:'text',
+                text:'✓',
+                color:'#FFFFFF',
+                weight:'bold',
+                align:'center'
+              }
+            ]
           },
 
           {
-
             type:'text',
-
             text:'ลงเวลาเข้างานเรียบร้อย',
-
-            color:'#14815B',
-
+            color:'#A71137',
             weight:'bold',
-
             size:'sm',
-
             margin:'md',
-
             flex:1
-
           }
 
         ]
-
       }
 
     );
@@ -1816,10 +1759,9 @@ async function sendFlex(
   }
 
 
-
-  /***********************************************
+  /*************************************************
    * CHECK OUT
-   ***********************************************/
+   *************************************************/
 
   else{
 
@@ -1836,49 +1778,36 @@ async function sendFlex(
       ),
 
       {
-
         type:'separator',
-
         margin:'lg',
-
-        color:'#EEEEEE'
-
+        color:'#F0F0F0'
       },
 
+
+      /*********************************************
+       * WORK TIME SUMMARY
+       *********************************************/
+
       {
-
         type:'box',
-
         layout:'vertical',
-
         margin:'lg',
-
-        paddingAll:'18px',
-
-        cornerRadius:'18px',
-
-        backgroundColor:'#F8EDF2',
+        paddingAll:'20px',
+        cornerRadius:'20px',
+        backgroundColor:'#FFF0F4',
 
         contents:[
 
           {
-
             type:'text',
-
-            text:'WORK SUMMARY',
-
-            size:'xs',
-
+            text:'เวลาในการทำงาน',
+            size:'sm',
             weight:'bold',
-
-            color:'#A35270',
-
+            color:'#B21D46',
             align:'center'
-
           },
 
           {
-
             type:'text',
 
             text:
@@ -1886,39 +1815,64 @@ async function sendFlex(
               '-',
 
             size:'xxl',
-
             weight:'bold',
-
-            color:'#B81746',
-
+            color:'#D7194A',
             align:'center',
-
             margin:'md',
-
             wrap:true
-
-          },
-
-          {
-
-            type:'text',
-
-            text:'SHIFT COMPLETED ✓',
-
-            size:'xs',
-
-            weight:'bold',
-
-            color:'#A35270',
-
-            align:'center',
-
-            margin:'sm'
-
           }
 
         ]
+      },
 
+
+      /*********************************************
+       * CHECKOUT SUCCESS
+       *********************************************/
+
+      {
+        type:'box',
+        layout:'horizontal',
+        margin:'lg',
+        paddingAll:'14px',
+        cornerRadius:'16px',
+        backgroundColor:'#F9F1F4',
+        alignItems:'center',
+
+        contents:[
+
+          {
+            type:'box',
+            layout:'vertical',
+            width:'34px',
+            height:'34px',
+            cornerRadius:'17px',
+            backgroundColor:'#B81746',
+            justifyContent:'center',
+            alignItems:'center',
+
+            contents:[
+              {
+                type:'text',
+                text:'✓',
+                color:'#FFFFFF',
+                weight:'bold',
+                align:'center'
+              }
+            ]
+          },
+
+          {
+            type:'text',
+            text:'ลงเวลาออกเรียบร้อย',
+            color:'#97183B',
+            weight:'bold',
+            size:'sm',
+            margin:'md',
+            flex:1
+          }
+
+        ]
       }
 
     );
@@ -1926,199 +1880,144 @@ async function sendFlex(
   }
 
 
-
-  /***********************************************
-   * FLEX MESSAGE
-   ***********************************************/
+  /*************************************************
+   * FLEX
+   *************************************************/
 
   const flex = {
 
-    type:
-      'flex',
+    type:'flex',
 
     altText:
 
       isCheckout
 
       ? 'ลงเวลาออกเรียบร้อย · ' +
-        result.workDuration
+        (result.workDuration || '')
 
       : 'ลงเวลาเข้างานเรียบร้อย',
 
 
     contents:{
 
-      type:
-        'bubble',
+      type:'bubble',
 
-      size:
-        'mega',
+      size:'mega',
 
 
-      /*********************************************
+      /*************************************************
        * PHOTO
-       *********************************************/
+       *************************************************/
 
       hero:{
 
-        type:
-          'image',
+        type:'image',
 
         url:
           result.photoUrl,
 
-        size:
-          'full',
+        size:'full',
 
-        aspectRatio:
-          '4:3',
+        aspectRatio:'4:3',
 
-        aspectMode:
-          'cover'
+        aspectMode:'cover'
 
       },
 
 
-      /*********************************************
-       * GRADIENT STYLE HEADER
-       *********************************************/
+      /*************************************************
+       * RED GRADIENT STYLE HEADER
+       *************************************************/
 
       header:{
 
-        type:
-          'box',
+        type:'box',
 
-        layout:
-          'vertical',
+        layout:'vertical',
 
-        paddingAll:
-          '0px',
+        paddingAll:'0px',
 
         contents:[
 
 
+          /*********************************************
+           * DARK RED
+           *********************************************/
+
           {
+            type:'box',
 
-            type:
-              'box',
+            layout:'vertical',
 
-            layout:
-              'vertical',
+            backgroundColor:'#240008',
 
-            backgroundColor:
-              accent1,
-
-            paddingStart:
-              '20px',
-
-            paddingEnd:
-              '20px',
-
-            paddingTop:
-              '15px',
-
-            paddingBottom:
-              '6px',
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'16px',
+            paddingBottom:'7px',
 
             contents:[
 
               {
+                type:'text',
 
-                type:
-                  'text',
+                text:'SLAY ROIET',
 
-                text:
-                  'SLAY ROIET',
+                color:'#FF7896',
 
-                color:
-                  '#FFFFFF',
+                size:'xs',
 
-                size:
-                  'xs',
-
-                weight:
-                  'bold'
-
+                weight:'bold'
               }
 
             ]
-
           },
 
 
+          /*********************************************
+           * RED
+           *********************************************/
+
           {
+            type:'box',
 
-            type:
-              'box',
+            layout:'horizontal',
 
-            layout:
-              'horizontal',
+            backgroundColor:'#650019',
 
-            backgroundColor:
-              accent2,
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'5px',
+            paddingBottom:'7px',
 
-            paddingStart:
-              '20px',
-
-            paddingEnd:
-              '20px',
-
-            paddingTop:
-              '5px',
-
-            paddingBottom:
-              '7px',
+            alignItems:'center',
 
             contents:[
 
               {
-
-                type:
-                  'text',
+                type:'text',
 
                 text:
-
                   isCheckout
-
                   ? 'CHECK OUT'
-
                   : 'CHECK IN',
 
-                color:
-                  '#FFFFFF',
+                color:'#FFFFFF',
 
-                size:
-                  'xxl',
+                size:'xxl',
 
-                weight:
-                  'bold',
+                weight:'bold',
 
-                flex:
-                  1
-
+                flex:1
               },
 
-
               {
-
-                type:
-                  'text',
-
-                text:
-                  '✓',
-
-                color:
-                  '#FFFFFF',
-
-                size:
-                  'xl',
-
-                weight:
-                  'bold',
-
-                align:
-                  'end'
-
+                type:'text',
+                text:'✓',
+                color:'#FFFFFF',
+                size:'xl',
+                weight:'bold',
+                align:'end'
               }
 
             ]
@@ -2126,53 +2025,73 @@ async function sendFlex(
           },
 
 
+          /*********************************************
+           * BRIGHT RED
+           *********************************************/
+
           {
+            type:'box',
 
-            type:
-              'box',
+            layout:'vertical',
 
-            layout:
-              'vertical',
+            backgroundColor:'#A80028',
 
-            backgroundColor:
-              accent3,
-
-            paddingStart:
-              '20px',
-
-            paddingEnd:
-              '20px',
-
-            paddingTop:
-              '7px',
-
-            paddingBottom:
-              '13px',
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'5px',
+            paddingBottom:'6px',
 
             contents:[
 
               {
-
-                type:
-                  'text',
+                type:'text',
 
                 text:
-
                   isCheckout
+                  ? 'ลงเวลาออกงาน'
+                  : 'ลงเวลาเข้างาน',
 
-                  ? 'SHIFT COMPLETED'
+                color:'#FFD8E1',
 
-                  : 'STAFF ATTENDANCE',
+                size:'xs',
 
-                color:
-                  '#FFFFFF',
+                weight:'bold'
+              }
 
-                size:
-                  'xs',
+            ]
 
-                weight:
-                  'bold'
+          },
 
+
+          /*********************************************
+           * PINK RED
+           *********************************************/
+
+          {
+            type:'box',
+
+            layout:'vertical',
+
+            backgroundColor:'#D7194A',
+
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'5px',
+            paddingBottom:'13px',
+
+            contents:[
+
+              {
+                type:'text',
+
+                text:
+                  'SLAY ROIET · STAFF ATTENDANCE',
+
+                color:'#FFFFFF',
+
+                size:'xxs',
+
+                weight:'bold'
               }
 
             ]
@@ -2184,60 +2103,64 @@ async function sendFlex(
       },
 
 
+      /*************************************************
+       * BODY
+       *************************************************/
+
       body:{
 
-        type:
-          'box',
+        type:'box',
 
-        layout:
-          'vertical',
+        layout:'vertical',
 
-        paddingAll:
-          '20px',
+        paddingAll:'20px',
 
-        spacing:
-          'md',
+        spacing:'md',
 
-        contents:
-          body
+        backgroundColor:'#FFFFFF',
+
+        contents:body
 
       },
 
 
+      /*************************************************
+       * FOOTER
+       *************************************************/
+
       footer:{
 
-        type:
-          'box',
+        type:'box',
 
-        layout:
-          'vertical',
+        layout:'vertical',
 
-        paddingAll:
-          '16px',
+        paddingAll:'16px',
+
+        backgroundColor:'#FFFFFF',
 
         contents:[
 
+
           {
+            type:'button',
 
-            type:
-              'button',
+            style:'primary',
 
-            style:
-              'primary',
+            height:'sm',
 
-            height:
-              'sm',
-
-            color:
-              accent3,
+            color:'#D7194A',
 
             action:{
 
-              type:
-                'uri',
+              type:'uri',
 
               label:
-                '✅ เช็คชื่อเข้างาน',
+
+                isCheckout
+
+                ? '✅ เช็คชื่อเข้างาน'
+
+                : '⏰ ลงชื่อออกงาน',
 
               uri:
                 LIFF_URL
@@ -2246,25 +2169,19 @@ async function sendFlex(
 
           },
 
+
           {
+            type:'text',
 
-            type:
-              'text',
+            text:'SLAY ROIET',
 
-            text:
-              'SLAY ROIET · STAFF ATTENDANCE',
+            size:'xxs',
 
-            size:
-              'xxs',
+            color:'#C6C6C6',
 
-            color:
-              '#BBBBBB',
+            align:'center',
 
-            align:
-              'center',
-
-            margin:
-              'md'
+            margin:'md'
 
           }
 

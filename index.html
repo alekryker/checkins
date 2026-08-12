@@ -10,7 +10,7 @@
 
 <meta
   name="theme-color"
-  content="#720019"
+  content="#7A001E"
 >
 
 <title>SLAY ROIET · Staff Attendance</title>
@@ -18,40 +18,26 @@
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
 <style>
-
-/* =========================================================
-   ROOT
-========================================================= */
-
 :root{
+  --red-950:#170006;
+  --red-900:#2D000B;
+  --red-800:#4D0014;
+  --red-700:#72001F;
+  --red-600:#A90032;
+  --red-500:#D7194A;
+  --red-400:#F13B69;
+  --red-300:#FF7A99;
 
-  --red-950:#220008;
-  --red-900:#3d0010;
-  --red-800:#620019;
-  --red-700:#860025;
-  --red-600:#ac0a35;
-  --red-500:#d7194a;
-  --red-400:#f13a68;
-  --red-300:#ff7897;
-
-  --bg:#f7f4f5;
-  --white:#ffffff;
-
-  --text:#171214;
-  --muted:#8f8589;
-
-  --success:#15976a;
+  --bg:#F7F3F4;
+  --white:#FFFFFF;
+  --text:#151113;
+  --muted:#8E8387;
+  --success:#15976A;
 
   --shadow:
     0 18px 55px
     rgba(89,0,21,.10);
-
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
   box-sizing:border-box;
@@ -66,7 +52,6 @@ body{
 }
 
 body{
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -77,69 +62,47 @@ body{
   background:
     radial-gradient(
       circle at top right,
-      rgba(215,25,74,.13),
-      transparent 32%
+      rgba(215,25,74,.15),
+      transparent 30%
     ),
     linear-gradient(
       180deg,
-      #faf7f8 0%,
-      #f5f1f2 100%
+      #FCF9FA 0%,
+      #F5F1F2 100%
     );
 
   color:var(--text);
-
   min-height:100vh;
-
 }
 
-
-/* =========================================================
-   BACKGROUND DECORATION
-========================================================= */
-
 body::before{
-
   content:"";
-
   position:fixed;
-
-  width:340px;
-  height:340px;
-
+  width:360px;
+  height:360px;
   border-radius:50%;
-
-  top:-190px;
-  left:-150px;
+  top:-210px;
+  left:-180px;
 
   background:
     radial-gradient(
       circle,
-      rgba(215,25,74,.21),
+      rgba(215,25,74,.24),
       rgba(215,25,74,0)
     );
 
   pointer-events:none;
-
 }
 
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
 .app{
-
   width:100%;
-
   max-width:560px;
-
   margin:0 auto;
 
   padding:
     16px
     14px
     calc(40px + env(safe-area-inset-bottom));
-
 }
 
 
@@ -148,262 +111,201 @@ body::before{
 ========================================================= */
 
 .hero{
-
   position:relative;
-
   overflow:hidden;
 
   border-radius:30px;
 
-  padding:25px 23px 24px;
+  padding:
+    25px
+    23px
+    24px;
 
   color:#fff;
 
   background:
     linear-gradient(
       145deg,
-      #180006 0%,
-      #480011 35%,
-      #8d0028 72%,
-      #d7194a 130%
+      #120004 0%,
+      #39000D 28%,
+      #72001F 60%,
+      #D7194A 115%
     );
 
   box-shadow:
     0 25px 60px
-    rgba(107,0,26,.24);
-
+    rgba(107,0,26,.27);
 }
-
 
 .hero::before{
-
   content:"";
-
-  position:absolute;
-
-  width:250px;
-  height:250px;
-
-  border-radius:50%;
-
-  right:-115px;
-  top:-120px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,255,255,.24),
-      rgba(255,255,255,0)
-    );
-
-}
-
-
-.hero::after{
-
-  content:"";
-
   position:absolute;
 
   width:260px;
   height:260px;
 
+  right:-120px;
+  top:-125px;
+
   border-radius:50%;
 
-  left:-150px;
-  bottom:-210px;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.23),
+      rgba(255,255,255,0)
+    );
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+
+  width:280px;
+  height:280px;
+
+  left:-170px;
+  bottom:-220px;
+
+  border-radius:50%;
 
   background:
-    rgba(255,255,255,.07);
-
+    rgba(255,255,255,.06);
 }
-
 
 .hero-content{
-
   position:relative;
-
   z-index:2;
-
 }
-
 
 .brand-row{
-
   display:flex;
-
-  align-items:center;
-
   justify-content:space-between;
-
+  align-items:center;
 }
-
 
 .brand{
-
   font-size:11px;
-
-  letter-spacing:2.4px;
-
+  letter-spacing:2.3px;
   font-weight:900;
-
-  color:#ffabc0;
-
+  color:#FFABC0;
 }
 
-
 .status-chip{
+  padding:
+    7px
+    10px;
 
-  padding:7px 10px;
-
-  border-radius:100px;
+  border-radius:999px;
 
   font-size:10px;
-
-  font-weight:800;
+  font-weight:900;
 
   color:#fff;
 
   background:
-    rgba(255,255,255,.13);
+    rgba(255,255,255,.12);
 
   border:
     1px solid
     rgba(255,255,255,.13);
 
-  backdrop-filter:blur(12px);
-
+  backdrop-filter:blur(10px);
 }
-
 
 .hero h1{
-
   margin:
-    20px 0
-    5px;
+    20px
+    0
+    6px;
 
   font-size:
-    clamp(31px,8vw,40px);
+    clamp(
+      31px,
+      8vw,
+      40px
+    );
 
   line-height:1.05;
-
   letter-spacing:-1px;
-
 }
-
 
 .hero-subtitle{
-
   color:
-    rgba(255,255,255,.68);
+    rgba(255,255,255,.66);
 
   font-size:13px;
-
 }
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
 
 .profile{
-
-  margin-top:25px;
-
   display:flex;
-
   align-items:center;
-
   gap:13px;
 
+  margin-top:24px;
 }
 
-
 .avatar-wrap{
-
   width:58px;
   height:58px;
 
-  border-radius:50%;
-
   padding:3px;
+
+  border-radius:50%;
 
   background:
     linear-gradient(
       135deg,
-      #ffffff,
-      #ff7897
+      #FFFFFF,
+      #FF7897
     );
-
 }
 
-
 .avatar{
-
   display:block;
 
   width:100%;
   height:100%;
 
-  object-fit:cover;
-
   border-radius:50%;
 
-  background:#2d151c;
+  object-fit:cover;
 
+  background:#2D151C;
 }
-
 
 .profile-info{
-
-  flex:1;
-
   min-width:0;
-
+  flex:1;
 }
 
-
 .profile-name{
-
   font-size:18px;
-
   font-weight:900;
 
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
-
 }
 
-
 .profile-state{
-
   margin-top:4px;
 
   font-size:12px;
 
   color:
     rgba(255,255,255,.62);
-
 }
 
 
 /* =========================================================
-   ACTIVE SHIFT
+   SHIFT CARD
 ========================================================= */
 
 .shift{
-
   display:none;
 
-  position:relative;
-
-  overflow:hidden;
-
   margin-top:14px;
-
   padding:18px;
 
   border-radius:24px;
@@ -411,8 +313,8 @@ body::before{
   background:
     linear-gradient(
       135deg,
-      #fff 0%,
-      #fff5f7 100%
+      #FFFFFF,
+      #FFF4F7
     );
 
   box-shadow:var(--shadow);
@@ -420,58 +322,39 @@ body::before{
   border:
     1px solid
     rgba(215,25,74,.06);
-
 }
-
 
 .shift.show{
   display:block;
 }
 
-
 .shift-top{
-
   display:flex;
-
-  justify-content:space-between;
-
   align-items:center;
-
+  justify-content:space-between;
 }
 
-
 .shift-label{
+  color:#A69A9E;
 
   font-size:11px;
-
   font-weight:900;
 
   letter-spacing:.6px;
-
-  color:#a69a9e;
-
 }
 
-
 .live-badge{
-
   display:flex;
-
   align-items:center;
-
-  gap:5px;
+  gap:6px;
 
   color:var(--success);
 
   font-size:11px;
-
   font-weight:900;
-
 }
 
-
 .live-dot{
-
   width:8px;
   height:8px;
 
@@ -482,31 +365,21 @@ body::before{
   box-shadow:
     0 0 0 6px
     rgba(21,151,106,.10);
-
 }
 
-
 .shift-time{
-
   margin-top:9px;
 
   font-size:23px;
-
   font-weight:950;
-
-  color:#191416;
-
 }
 
-
 .shift-hint{
-
   margin-top:6px;
 
-  color:#8e8387;
+  color:#8E8387;
 
   font-size:12px;
-
 }
 
 
@@ -515,9 +388,7 @@ body::before{
 ========================================================= */
 
 .card{
-
   margin-top:14px;
-
   padding:19px;
 
   border-radius:25px;
@@ -525,79 +396,61 @@ body::before{
   background:
     rgba(255,255,255,.94);
 
-  box-shadow:
-    0 14px 40px
-    rgba(43,16,25,.065);
-
   border:
     1px solid
     rgba(92,43,59,.045);
 
+  box-shadow:
+    0 14px 40px
+    rgba(43,16,25,.065);
 }
 
-
 .section-head{
-
   display:flex;
-
   align-items:center;
-
   gap:12px;
 
   margin-bottom:15px;
-
 }
 
-
 .step{
-
-  width:31px;
-  height:31px;
-
-  border-radius:11px;
+  width:32px;
+  height:32px;
 
   display:flex;
-
   justify-content:center;
   align-items:center;
+
+  border-radius:11px;
 
   background:
     linear-gradient(
       135deg,
-      #870024,
-      #d7194a
+      #650019,
+      #D7194A
     );
 
   color:#fff;
 
   font-size:12px;
-
   font-weight:900;
 
   box-shadow:
-    0 7px 16px
-    rgba(215,25,74,.20);
-
+    0 7px 17px
+    rgba(215,25,74,.21);
 }
-
 
 .section-title{
-
   font-size:18px;
-
   font-weight:950;
-
 }
 
-
 .section-subtitle{
-
   margin-top:2px;
 
   font-size:11px;
 
-  color:#a09599;
-
+  color:#A09599;
 }
 
 
@@ -606,11 +459,8 @@ body::before{
 ========================================================= */
 
 .location-box{
-
   display:flex;
-
   align-items:center;
-
   gap:13px;
 
   padding:15px;
@@ -620,113 +470,86 @@ body::before{
   background:
     linear-gradient(
       135deg,
-      #faf7f8,
-      #fff
+      #FAF7F8,
+      #FFFFFF
     );
 
   border:
     1px solid
-    #eee8ea;
-
+    #EEE8EA;
 }
 
-
 .location-icon{
-
   width:48px;
   height:48px;
 
-  border-radius:16px;
+  flex:0 0 48px;
 
   display:flex;
-
-  justify-content:center;
   align-items:center;
+  justify-content:center;
+
+  border-radius:16px;
 
   background:
     linear-gradient(
       145deg,
-      #fff0f4,
-      #ffe1e9
+      #FFF0F4,
+      #FFE1E9
     );
 
-  color:#c51443;
+  color:#C51443;
 
-  font-size:21px;
-
-  flex-shrink:0;
-
+  font-size:20px;
 }
-
 
 .location-content{
-
   min-width:0;
   flex:1;
-
 }
-
 
 .location-title{
-
   font-size:14px;
-
   font-weight:900;
-
 }
 
-
 .location-detail{
-
   margin-top:4px;
 
-  color:#958a8e;
+  color:#958A8E;
 
   font-size:11px;
-
   line-height:1.45;
 
   word-break:break-all;
-
 }
 
-
 .area-state{
+  display:none;
 
   margin-top:11px;
-
   padding:10px 12px;
 
   border-radius:13px;
 
   font-size:12px;
-
   font-weight:850;
-
-  display:none;
-
 }
 
-
 .area-state.ok{
-
   display:block;
 
   color:#137954;
 
-  background:#ecfaf4;
-
+  background:#ECFAF4;
 }
 
-
 .area-state.bad{
-
   display:block;
 
-  color:#ad1638;
+  color:#AD1638;
 
-  background:#fff0f3;
-
+  background:#FFF0F3;
 }
 
 
@@ -735,9 +558,7 @@ body::before{
 ========================================================= */
 
 .btn{
-
   width:100%;
-
   border:0;
 
   font-family:inherit;
@@ -747,45 +568,34 @@ body::before{
   transition:
     transform .15s ease,
     opacity .15s ease;
-
 }
-
 
 .btn:active{
   transform:scale(.985);
 }
 
-
 .btn:disabled{
-
-  opacity:.45;
-
+  opacity:.44;
   cursor:not-allowed;
-
 }
 
-
 .soft-btn{
-
   margin-top:12px;
-
   padding:15px;
 
   border-radius:17px;
 
-  color:#b1143d;
+  color:#B1143D;
 
   background:
     linear-gradient(
       135deg,
-      #fff0f4,
-      #fde6ec
+      #FFF0F4,
+      #FDE6EC
     );
 
-  font-weight:900;
-
   font-size:14px;
-
+  font-weight:900;
 }
 
 
@@ -794,50 +604,40 @@ body::before{
 ========================================================= */
 
 .photo-box{
-
   position:relative;
-
   overflow:hidden;
 
   width:100%;
 
   aspect-ratio:4/3;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   border-radius:22px;
 
   background:
     linear-gradient(
       145deg,
-      #f3edef,
-      #faf8f9
+      #F3EDEF,
+      #FAF8F9
     );
 
   border:
     1px dashed
-    #e3d8dc;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
+    #E3D8DC;
 }
-
 
 .photo-placeholder{
-
   text-align:center;
 
-  color:#a89ba0;
+  color:#A89BA0;
 
   font-size:13px;
-
 }
 
-
 .photo-placeholder-icon{
-
   width:60px;
   height:60px;
 
@@ -846,9 +646,8 @@ body::before{
     10px;
 
   display:flex;
-
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 
   border-radius:20px;
 
@@ -859,51 +658,40 @@ body::before{
   box-shadow:
     0 8px 25px
     rgba(0,0,0,.05);
-
 }
 
-
 .photo-preview{
-
   display:none;
 
   width:100%;
   height:100%;
 
   object-fit:cover;
-
 }
 
-
 .photo-gradient{
-
   display:none;
 
-  pointer-events:none;
-
   position:absolute;
-
   inset:auto 0 0 0;
 
   height:70px;
 
+  pointer-events:none;
+
   background:
     linear-gradient(
       transparent,
-      rgba(44,0,11,.35)
+      rgba(44,0,11,.36)
     );
-
 }
-
 
 .photo-box.has-photo
 .photo-gradient{
   display:block;
 }
 
-
 .camera-btn{
-
   display:block;
 
   margin-top:12px;
@@ -915,7 +703,6 @@ body::before{
   text-align:center;
 
   font-size:15px;
-
   font-weight:900;
 
   color:#fff;
@@ -925,17 +712,15 @@ body::before{
   background:
     linear-gradient(
       100deg,
-      #460011,
-      #9b002c,
-      #d7194a
+      #3A000D,
+      #850025,
+      #D7194A
     );
 
   box-shadow:
     0 12px 25px
     rgba(170,0,44,.18);
-
 }
-
 
 input[type=file]{
   display:none;
@@ -943,13 +728,11 @@ input[type=file]{
 
 
 /* =========================================================
-   MAIN ACTION
+   ACTION
 ========================================================= */
 
 .action-btn{
-
   position:relative;
-
   overflow:hidden;
 
   margin-top:15px;
@@ -961,62 +744,50 @@ input[type=file]{
   color:#fff;
 
   font-size:17px;
-
   font-weight:950;
 
   letter-spacing:-.2px;
 
   box-shadow:
     0 17px 35px
-    rgba(174,0,45,.21);
-
+    rgba(174,0,45,.22);
 }
 
-
 .action-btn::before{
-
   content:"";
 
   position:absolute;
 
   top:-80px;
-
   left:-80px;
 
   width:180px;
   height:180px;
 
-  background:
-    rgba(255,255,255,.12);
-
   border-radius:50%;
 
+  background:
+    rgba(255,255,255,.12);
 }
-
 
 .action-btn.checkin{
-
   background:
     linear-gradient(
       105deg,
-      #540015 0%,
-      #a90031 50%,
-      #ee315f 110%
+      #470011,
+      #A90031 50%,
+      #EE315F 110%
     );
-
 }
 
-
 .action-btn.checkout{
-
   background:
     linear-gradient(
       105deg,
-      #240007 0%,
-      #6e001d 45%,
-      #be1041 100%
+      #210006,
+      #650019 45%,
+      #C61143 100%
     );
-
 }
 
 
@@ -1025,97 +796,81 @@ input[type=file]{
 ========================================================= */
 
 .message{
-
   display:none;
 
   margin-top:13px;
-
   padding:14px 15px;
 
   border-radius:17px;
 
-  line-height:1.5;
-
   font-size:13px;
-
   font-weight:800;
-
+  line-height:1.5;
 }
 
-
 .message.error{
-
   display:block;
 
-  color:#a81738;
+  color:#A81738;
 
-  background:#fff0f3;
-
+  background:#FFF0F3;
 }
 
 
 /* =========================================================
-   LOADER
+   LOADING
 ========================================================= */
 
 .loading{
+  display:none;
 
   position:fixed;
-
   inset:0;
 
   z-index:99999;
 
-  display:none;
-
-  justify-content:center;
-
   align-items:center;
+  justify-content:center;
 
   padding:25px;
 
   background:
-    rgba(28,0,7,.55);
+    rgba(28,0,7,.57);
 
   backdrop-filter:blur(13px);
-
 }
-
 
 .loading.show{
   display:flex;
 }
 
-
 .loading-card{
-
   width:min(290px,100%);
 
-  padding:28px 24px;
+  padding:
+    28px
+    24px;
+
+  border-radius:28px;
 
   text-align:center;
 
   color:#fff;
 
-  border-radius:28px;
-
   background:
     linear-gradient(
       145deg,
-      #250009,
-      #74001e,
-      #b90b3d
+      #1D0007,
+      #650019,
+      #B90B3D
     );
 
   box-shadow:
     0 30px 80px
-    rgba(40,0,10,.40);
-
+    rgba(40,0,10,.43);
 }
 
-
 .spinner{
-
   width:48px;
   height:48px;
 
@@ -1127,84 +882,55 @@ input[type=file]{
     4px solid
     rgba(255,255,255,.17);
 
-  border-top-color:
-    #fff;
+  border-top-color:#fff;
 
   border-radius:50%;
 
   animation:
     spin .72s
     linear infinite;
-
 }
 
-
 @keyframes spin{
-
   to{
     transform:rotate(360deg);
   }
-
 }
-
 
 .loading-title{
-
   font-size:18px;
-
   font-weight:950;
-
 }
 
-
 .loading-detail{
-
   margin-top:6px;
 
   color:
     rgba(255,255,255,.66);
 
   font-size:12px;
-
   line-height:1.4;
-
 }
 
-
-/* =========================================================
-   FOOT NOTE
-========================================================= */
-
 .footer-note{
-
   margin-top:18px;
 
   text-align:center;
 
+  color:#B9ADB1;
+
   font-size:10px;
-
-  letter-spacing:1px;
-
-  color:#b9adb1;
-
   font-weight:800;
 
+  letter-spacing:1px;
 }
-
 </style>
 
 </head>
 
-
 <body>
 
-
 <main class="app">
-
-
-  <!-- =====================================================
-       HERO
-  ====================================================== -->
 
   <section class="hero">
 
@@ -1271,10 +997,6 @@ input[type=file]{
   </section>
 
 
-  <!-- =====================================================
-       CURRENT SHIFT
-  ====================================================== -->
-
   <section
     id="shiftCard"
     class="shift"
@@ -1287,11 +1009,8 @@ input[type=file]{
       </div>
 
       <div class="live-badge">
-
         <span class="live-dot"></span>
-
         กำลังทำงาน
-
       </div>
 
     </div>
@@ -1311,10 +1030,6 @@ input[type=file]{
 
   </section>
 
-
-  <!-- =====================================================
-       LOCATION
-  ====================================================== -->
 
   <section class="card">
 
@@ -1369,8 +1084,8 @@ input[type=file]{
 
     <button
       id="locationBtn"
-      type="button"
       class="btn soft-btn"
+      type="button"
       onclick="getLocation()"
     >
       อัปเดตตำแหน่งปัจจุบัน
@@ -1384,10 +1099,6 @@ input[type=file]{
 
   </section>
 
-
-  <!-- =====================================================
-       CAMERA
-  ====================================================== -->
 
   <section class="card">
 
@@ -1464,10 +1175,6 @@ input[type=file]{
   </section>
 
 
-  <!-- =====================================================
-       ACTION
-  ====================================================== -->
-
   <button
     id="actionBtn"
     type="button"
@@ -1489,13 +1196,8 @@ input[type=file]{
     SLAY ROIET · STAFF ATTENDANCE
   </div>
 
-
 </main>
 
-
-<!-- =====================================================
-     LOADING
-====================================================== -->
 
 <div
   id="loading"
@@ -1548,12 +1250,13 @@ const GAS_URL =
 const LIFF_URL =
   'https://liff.line.me/2009168820-J1uzUVLZ';
 
+
 const OFFICE_LAT =
-16.143207;
+  16.0680965;
+
 
 const OFFICE_LNG =
-103.659470;
-
+  103.6506075;
 
 
 const MAX_DISTANCE_M =
@@ -1685,7 +1388,7 @@ async function init(){
 
 
 /* =========================================================
-   LOAD STATUS
+   STATUS
 ========================================================= */
 
 async function loadStatus(){
@@ -1844,7 +1547,7 @@ async function loadStatus(){
 
 
 /* =========================================================
-   LOCATION
+   GPS
 ========================================================= */
 
 function getLocation(){
@@ -2152,10 +1855,8 @@ async function submitAttendance(){
     true,
 
     mode === 'checkin'
-
-    ? 'กำลังลงเวลาเข้างาน'
-
-    : 'กำลังลงเวลาออก',
+      ? 'กำลังลงเวลาเข้างาน'
+      : 'กำลังลงเวลาออก',
 
     'กำลังอัปโหลดรูปและบันทึกข้อมูล'
 
@@ -2207,10 +1908,8 @@ async function submitAttendance(){
     $('loadingTitle').textContent =
 
       mode === 'checkin'
-
-      ? 'ลงเวลาเข้างานเรียบร้อย'
-
-      : 'ลงเวลาออกเรียบร้อย';
+        ? 'ลงเวลาเข้างานเรียบร้อย'
+        : 'ลงเวลาออกเรียบร้อย';
 
 
     $('loadingDetail').textContent =
@@ -2445,7 +2144,6 @@ async function waitForResult(
 
 /* =========================================================
    FLEX
-   ใช้ตัว Flex ล่าสุดที่เราแก้ไว้
 ========================================================= */
 
 async function sendFlex(result){
@@ -2492,6 +2190,8 @@ async function sendFlex(result){
   ];
 
 
+  /* CHECK IN */
+
   if(
     !isCheckout
   ){
@@ -2520,12 +2220,24 @@ async function sendFlex(result){
         contents:[
 
           {
-            type:'text',
-            text:'✓',
-            color:'#D7194A',
-            weight:'bold',
-            size:'lg',
-            flex:0
+            type:'box',
+            layout:'vertical',
+            width:'34px',
+            height:'34px',
+            cornerRadius:'17px',
+            backgroundColor:'#D7194A',
+            justifyContent:'center',
+            alignItems:'center',
+
+            contents:[
+              {
+                type:'text',
+                text:'✓',
+                color:'#FFFFFF',
+                weight:'bold',
+                align:'center'
+              }
+            ]
           },
 
           {
@@ -2539,12 +2251,14 @@ async function sendFlex(result){
           }
 
         ]
-
       }
 
     );
 
   }
+
+
+  /* CHECK OUT */
 
   else{
 
@@ -2581,25 +2295,77 @@ async function sendFlex(result){
             text:'เวลาในการทำงาน',
             size:'sm',
             weight:'bold',
-            color:'#B21D46',
+            color:'#A90032',
             align:'center'
           },
 
           {
             type:'text',
+
             text:
               result.workDuration ||
               '-',
+
             size:'xxl',
             weight:'bold',
             color:'#D7194A',
             align:'center',
             margin:'md',
             wrap:true
+          },
+
+          {
+            type:'box',
+            layout:'horizontal',
+            margin:'lg',
+            height:'6px',
+
+            contents:[
+
+              {
+                type:'box',
+                layout:'vertical',
+                backgroundColor:'#32000D',
+                flex:1,
+                contents:[]
+              },
+
+              {
+                type:'box',
+                layout:'vertical',
+                backgroundColor:'#62001D',
+                flex:1,
+                contents:[]
+              },
+
+              {
+                type:'box',
+                layout:'vertical',
+                backgroundColor:'#A90032',
+                flex:1,
+                contents:[]
+              },
+
+              {
+                type:'box',
+                layout:'vertical',
+                backgroundColor:'#D7194A',
+                flex:1,
+                contents:[]
+              },
+
+              {
+                type:'box',
+                layout:'vertical',
+                backgroundColor:'#F1466D',
+                flex:1,
+                contents:[]
+              }
+
+            ]
           }
 
         ]
-
       },
 
       {
@@ -2609,16 +2375,29 @@ async function sendFlex(result){
         paddingAll:'14px',
         cornerRadius:'16px',
         backgroundColor:'#F9F1F4',
+        alignItems:'center',
 
         contents:[
 
           {
-            type:'text',
-            text:'✓',
-            color:'#B81746',
-            weight:'bold',
-            size:'lg',
-            flex:0
+            type:'box',
+            layout:'vertical',
+            width:'34px',
+            height:'34px',
+            cornerRadius:'17px',
+            backgroundColor:'#B81746',
+            justifyContent:'center',
+            alignItems:'center',
+
+            contents:[
+              {
+                type:'text',
+                text:'✓',
+                color:'#FFFFFF',
+                weight:'bold',
+                align:'center'
+              }
+            ]
           },
 
           {
@@ -2632,12 +2411,12 @@ async function sendFlex(result){
           }
 
         ]
-
       }
 
     );
 
   }
+
 
 
   const flex = {
@@ -2647,14 +2426,12 @@ async function sendFlex(result){
     altText:
 
       isCheckout
-
-      ? 'ลงเวลาออกเรียบร้อย · ' +
-        (
-          result.workDuration ||
-          ''
-        )
-
-      : 'ลงเวลาเข้างานเรียบร้อย',
+        ? 'ลงเวลาออกเรียบร้อย · ' +
+          (
+            result.workDuration ||
+            ''
+          )
+        : 'ลงเวลาเข้างานเรียบร้อย',
 
 
     contents:{
@@ -2663,6 +2440,8 @@ async function sendFlex(result){
 
       size:'mega',
 
+
+      /* PHOTO */
 
       hero:{
 
@@ -2680,184 +2459,278 @@ async function sendFlex(result){
       },
 
 
-header:{
+      /* RED GRADIENT STYLE */
 
-  type:'box',
+      header:{
 
-  layout:'vertical',
+        type:'box',
 
-  paddingAll:'0px',
+        layout:'vertical',
 
-  contents:[
+        paddingAll:'0px',
 
-    // แดงดำ
-    {
-      type:'box',
-      layout:'vertical',
-
-      backgroundColor:'#170006',
-
-      paddingStart:'20px',
-      paddingEnd:'20px',
-      paddingTop:'16px',
-      paddingBottom:'5px',
-
-      contents:[
-        {
-          type:'text',
-
-          text:'SLAY ROIET',
-
-          color:'#FF94AB',
-
-          size:'xs',
-
-          weight:'bold'
-        }
-      ]
-    },
+        contents:[
 
 
-    // แดงไวน์เข้ม
-    {
-      type:'box',
-      layout:'vertical',
+          {
+            type:'box',
+            layout:'vertical',
+            backgroundColor:'#170006',
 
-      backgroundColor:'#36000F',
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'15px',
+            paddingBottom:'5px',
 
-      paddingStart:'20px',
-      paddingEnd:'20px',
-      paddingTop:'4px',
-      paddingBottom:'4px',
+            contents:[
 
-      contents:[
-        {
-          type:'text',
+              {
+                type:'text',
+                text:'SLAY ROIET',
+                color:'#FF9AAF',
+                size:'xs',
+                weight:'bold'
+              }
 
-          text:
-            isCheckout
-            ? 'CHECK OUT'
-            : 'CHECK IN',
-
-          color:'#FFFFFF',
-
-          size:'xxl',
-
-          weight:'bold'
-        }
-      ]
-    },
+            ]
+          },
 
 
-    // แดงไวน์
-    {
-      type:'box',
-      layout:'horizontal',
+          {
+            type:'box',
+            layout:'vertical',
+            backgroundColor:'#31000D',
 
-      backgroundColor:'#62001D',
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'3px',
+            paddingBottom:'3px',
 
-      paddingStart:'20px',
-      paddingEnd:'20px',
-      paddingTop:'5px',
-      paddingBottom:'5px',
+            contents:[
 
-      alignItems:'center',
+              {
+                type:'text',
 
-      contents:[
+                text:
 
-        {
-          type:'text',
+                  isCheckout
+                    ? 'CHECK OUT'
+                    : 'CHECK IN',
 
-          text:
-            isCheckout
-            ? 'ลงเวลาออกงาน'
-            : 'ลงเวลาเข้างาน',
+                color:'#FFFFFF',
+                size:'xxl',
+                weight:'bold'
+              }
 
-          color:'#FFD5DF',
-
-          size:'xs',
-
-          weight:'bold',
-
-          flex:1
-        },
-
-        {
-          type:'text',
-
-          text:'✓',
-
-          color:'#FFFFFF',
-
-          size:'lg',
-
-          weight:'bold',
-
-          align:'end'
-        }
-
-      ]
-    },
+            ]
+          },
 
 
-    // แดงสด
-    {
-      type:'box',
-      layout:'vertical',
+          {
+            type:'box',
+            layout:'horizontal',
+            backgroundColor:'#570018',
 
-      backgroundColor:'#A90032',
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'5px',
+            paddingBottom:'5px',
 
-      paddingStart:'20px',
-      paddingEnd:'20px',
-      paddingTop:'5px',
-      paddingBottom:'5px',
+            alignItems:'center',
 
-      contents:[
-        {
-          type:'text',
+            contents:[
 
-          text:'STAFF ATTENDANCE',
+              {
+                type:'text',
 
-          color:'#FFE8EE',
+                text:
 
-          size:'xxs',
+                  isCheckout
+                    ? 'ลงเวลาออกงาน'
+                    : 'ลงเวลาเข้างาน',
 
-          weight:'bold'
-        }
-      ]
-    },
+                color:'#FFD7E0',
+
+                size:'xs',
+
+                weight:'bold',
+
+                flex:1
+              },
+
+              {
+                type:'text',
+                text:'✓',
+                color:'#FFFFFF',
+                size:'lg',
+                weight:'bold',
+                align:'end'
+              }
+
+            ]
+          },
 
 
-    // แดงชมพู
-    {
-      type:'box',
-      layout:'vertical',
+          {
+            type:'box',
+            layout:'vertical',
+            backgroundColor:'#7D0025',
 
-      backgroundColor:'#D7194A',
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'4px',
+            paddingBottom:'4px',
 
-      paddingStart:'20px',
-      paddingEnd:'20px',
-      paddingTop:'5px',
-      paddingBottom:'12px',
+            contents:[
 
-      contents:[
-        {
-          type:'text',
+              {
+                type:'text',
+                text:'STAFF ATTENDANCE',
+                color:'#FFE7ED',
+                size:'xxs',
+                weight:'bold'
+              }
 
-          text:'SLAY ROIET',
+            ]
+          },
 
-          color:'#FFFFFF',
 
-          size:'xxs',
+          {
+            type:'box',
+            layout:'vertical',
+            backgroundColor:'#A90032',
 
-          weight:'bold'
-        }
-      ]
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'4px',
+            paddingBottom:'4px',
+
+            contents:[
+
+              {
+                type:'text',
+                text:'SLAY ROIET',
+                color:'#FFFFFF',
+                size:'xxs',
+                weight:'bold'
+              }
+
+            ]
+          },
+
+
+          {
+            type:'box',
+            layout:'vertical',
+            backgroundColor:'#D7194A',
+
+            paddingStart:'20px',
+            paddingEnd:'20px',
+            paddingTop:'4px',
+            paddingBottom:'11px',
+
+            contents:[
+
+              {
+                type:'text',
+
+                text:
+
+                  isCheckout
+                    ? 'ลงเวลาออกเรียบร้อย'
+                    : 'ลงเวลาเข้างานเรียบร้อย',
+
+                color:'#FFFFFF',
+
+                size:'xxs',
+
+                weight:'bold'
+              }
+
+            ]
+          }
+
+        ]
+
+      },
+
+
+      body:{
+
+        type:'box',
+
+        layout:'vertical',
+
+        paddingAll:'20px',
+
+        spacing:'md',
+
+        backgroundColor:'#FFFFFF',
+
+        contents:body
+
+      },
+
+
+      footer:{
+
+        type:'box',
+
+        layout:'vertical',
+
+        paddingAll:'16px',
+
+        backgroundColor:'#FFFFFF',
+
+        contents:[
+
+          {
+            type:'button',
+
+            style:'primary',
+
+            height:'sm',
+
+            color:'#D7194A',
+
+            action:{
+
+              type:'uri',
+
+              label:
+
+                isCheckout
+                  ? 'เช็คชื่อเข้างาน'
+                  : 'ลงชื่อออกงาน',
+
+              uri:
+                LIFF_URL
+
+            }
+
+          },
+
+          {
+            type:'text',
+
+            text:'SLAY ROIET · STAFF ATTENDANCE',
+
+            size:'xxs',
+
+            color:'#C2B7BB',
+
+            align:'center',
+
+            margin:'md'
+          }
+
+        ]
+
+      }
+
     }
 
-  ]
-
-},
+  };
 
 
   await liff.sendMessages([
@@ -2891,9 +2764,13 @@ function flexRow(
 
       {
         type:'text',
+
         text:label,
+
         size:'sm',
+
         color:'#888888',
+
         flex:5
       },
 
@@ -2907,10 +2784,15 @@ function flexRow(
           ),
 
         size:'sm',
+
         color:'#111111',
+
         weight:'bold',
+
         align:'end',
+
         flex:6,
+
         wrap:true
       }
 
@@ -3065,7 +2947,7 @@ function jsonp(
 
 
 /* =========================================================
-   IMAGE COMPRESS
+   COMPRESS IMAGE
 ========================================================= */
 
 function compressImage(
@@ -3079,6 +2961,7 @@ function compressImage(
       reject
     ) => {
 
+
       const reader =
         new FileReader();
 
@@ -3090,8 +2973,10 @@ function compressImage(
       reader.onload =
         event => {
 
+
           image.onload =
             () => {
+
 
               let width =
                 image.naturalWidth;
@@ -3222,9 +3107,9 @@ function distanceMeters(
 
   const rad =
     value =>
-    Number(value) *
-    Math.PI /
-    180;
+      Number(value) *
+      Math.PI /
+      180;
 
 
   const p1 =

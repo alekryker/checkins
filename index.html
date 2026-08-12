@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>เช็คชื่อเข้างาน | SLAY ROIET</title>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <style>
+    :root{
+      --bg:#f5f5f5;
+      --card:#fff;
+      --text:#111;
+      --muted:#747474;
+      --line:#e7e7e7;
+      --green:#19a974;
+      --red:#d81920;
+      --dark:#111;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Thai",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+    .wrap{max-width:560px;margin:0 auto;padding:18px 14px 40px}
+    .top{
+      background:#111;color:#fff;border-radius:24px;padding:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.10);
+      margin-bottom:14px;
+    }
+    .eyebrow{font-size:12px;letter-spacing:1.6px;color:#aaa;font-weight:700}
+    h1{margin:5px 0 4px;font-size:27px;line-height:1.1}
+    .sub{font-size:14px;color:#c9c9c9}
+    .profile{display:flex;align-items:center;gap:12px;margin-top:18px}
+    .avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#2b2b2b}
+    .name{font-weight:800;font-size:16px}
+    .small{font-size:12px;color:#aaa;margin-top:2px;overflow-wrap:anywhere}
+    .card{
+      background:var(--card);border-radius:22px;padding:18px;margin-top:12px;
+      box-shadow:0 6px 24px rgba(0,0,0,.05);
+    }
+    .title{font-weight:800;font-size:17px;margin-bottom:12px}
+    .gpsBox{
+      border:1px solid var(--line);border-radius:16px;padding:14px;
+      display:flex;gap:12px;align-items:center;
+    }
+    .gpsIcon{
+      width:42px;height:42px;border-radius:13px;background:#edf9f4;
+      display:flex;align-items:center;justify-content:center;font-size:21px;flex:0 0 auto;
+    }
+    .gpsMain{font-size:14px;font-weight:800}
+    .gpsSub{font-size:12px;color:var(--muted);margin-top:3px;overflow-wrap:anywhere}
+    .btn{
+      width:100%;border:0;border-radius:15px;padding:14px 16px;
+      font-size:15px;font-weight:800;cursor:pointer;
+    }
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .btnGps{background:#f0f0f0;color:#111;margin-top:10px}
+    .photoBox{
+      position:relative;width:100%;aspect-ratio:4/3;border-radius:18px;
+      overflow:hidden;background:#eee;border:1px dashed #c9c9c9;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .photoBox img{width:100%;height:100%;object-fit:cover;display:none}
+    .photoHint{text-align:center;color:#777;padding:16px;font-size:14px}
+    .cameraBtn{
+      display:block;text-align:center;background:#111;color:#fff;
+      border-radius:15px;padding:14px;margin-top:10px;font-weight:800;
+      cursor:pointer;
+    }
+    input[type=file]{display:none}
+    .checkBtn{
+      margin-top:14px;background:var(--green);color:#fff;padding:17px;
+      border-radius:18px;font-size:17px;
+      box-shadow:0 10px 22px rgba(25,169,116,.20);
+    }
+    .msg{
+      display:none;margin-top:12px;border-radius:15px;padding:13px 14px;
+      font-size:14px;font-weight:700;line-height:1.45;
+    }
+    .msg.ok{display:block;background:#ebf9f3;color:#117653}
+    .msg.err{display:block;background:#fff0f0;color:#bd1f26}
+    .loading{
+      position:fixed;inset:0;background:rgba(255,255,255,.88);
+      display:none;align-items:center;justify-content:center;z-index:99;
+      padding:30px;text-align:center;
+    }
+    .loading.show{display:flex}
+    .loaderCard{
+      background:#fff;border-radius:24px;padding:26px;
+      box-shadow:0 12px 40px rgba(0,0,0,.12)
+    }
+    .spinner{
+      width:42px;height:42px;border:4px solid #e9e9e9;border-top-color:#111;
+      border-radius:50%;margin:0 auto 14px;animation:spin .8s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .note{font-size:11px;color:#999;line-height:1.5;margin-top:10px}
+    .debug{
+      margin-top:10px;padding:10px;border-radius:12px;background:#fafafa;
+      color:#777;font-size:11px;display:none;white-space:pre-wrap;overflow-wrap:anywhere
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <section class="top">
+      <div class="eyebrow">SLAY ROIET · STAFF ATTENDANCE</div>
+      <h1>เช็คชื่อเข้างาน</h1>
+      <div class="sub">ยืนยันตัวตนด้วย LINE + พิกัด + รูปถ่ายปัจจุบัน</div>
+
+      <div class="profile">
+        <img id="avatar" class="avatar" alt="">
+        <div>
+          <div id="displayName" class="name">กำลังเชื่อมต่อ LINE...</div>
+          <div id="lineState" class="small">กำลังเริ่ม LIFF</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="title">1. พิกัดปัจจุบัน</div>
+
+      <div class="gpsBox">
+        <div class="gpsIcon">⌖</div>
+        <div>
+          <div id="gpsMain" class="gpsMain">ยังไม่ได้รับพิกัด</div>
+          <div id="gpsSub" class="gpsSub">กดปุ่มด้านล่างและอนุญาต Location</div>
+        </div>
+      </div>
+
+      <button id="gpsBtn" class="btn btnGps" type="button" onclick="getLocation()">
+        📍 ใช้พิกัดปัจจุบัน
+      </button>
+
+      <div id="distanceText" class="note"></div>
+    </section>
+
+    <section class="card">
+      <div class="title">2. ถ่ายรูปยืนยัน</div>
+
+      <div class="photoBox">
+        <div id="photoHint" class="photoHint">📷<br>ยังไม่มีรูปถ่าย</div>
+        <img id="preview" alt="รูปเช็คอิน">
+      </div>
+
+      <label for="camera" class="cameraBtn">เปิดกล้องถ่ายรูป</label>
+      <input id="camera" type="file" accept="image/*" capture="environment">
+
+      <div class="note">รูปจะถูกบีบอัดก่อนส่งเพื่อให้บันทึกได้เร็วขึ้น</div>
+    </section>
+
+    <button id="checkinBtn" class="btn checkBtn" type="button" onclick="submitCheckin()" disabled>
+      ✅ เช็คอินเข้างาน
+    </button>
+
+    <div id="message" class="msg"></div>
+    <div id="debug" class="debug"></div>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="loaderCard">
+      <div class="spinner"></div>
+      <div style="font-weight:800">กำลังบันทึกเช็คอิน...</div>
+      <div style="font-size:12px;color:#777;margin-top:6px">กรุณาอย่าปิดหน้านี้</div>
+    </div>
+  </div>
+
+  <!-- ใช้ iframe รับผลจาก Apps Script เพื่อเลี่ยงปัญหา CORS -->
+  <iframe name="gasResultFrame" id="gasResultFrame" style="display:none"></iframe>
+
+<script>
+/*************************************************
+ * CONFIG — หน้า GitHub แก้แค่ส่วนนี้
+ *************************************************/
+
+// LIFF ของคุณ
+const LIFF_ID = '2009168820-J1uzUVLZ';
+
+// URL /exec ของ Apps Script backend
+// ตัวอย่าง:
+// https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxx/exec
+const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzMf1s3RGCWeJpA-LjX5EmjfE47WSylj1dCTkG7MFdv7Ta_7iZ19lWXENRqnZ-Guc4/exec';
+
+// พิกัด SLAY ROIET
+const OFFICE_LAT = 16.0680965;
+const OFFICE_LNG = 103.6506075;
+
+// ระยะเช็คอินสูงสุด
+const MAX_DISTANCE_M = 200;
+
+
+/*************************************************
+ * STATE
+ *************************************************/
+
+let idToken = '';
+let currentLocation = null;
+let compressedImage = '';
+let lineProfile = null;
+let submitTimeout = null;
+
+const $ = id => document.getElementById(id);
+
+
+/*************************************************
+ * START LIFF
+ *************************************************/
+
+window.addEventListener('load', initLiff);
+
+async function initLiff() {
+  try {
+
+    $('lineState').textContent = 'กำลังเริ่ม LIFF...';
+
+    await liff.init({
+      liffId: LIFF_ID
+    });
+
+    debugLog('LIFF init OK');
+    debugLog('isInClient=' + liff.isInClient());
+    debugLog('isLoggedIn=' + liff.isLoggedIn());
+
+    if (!liff.isLoggedIn()) {
+      $('lineState').textContent = 'กำลังเข้าสู่ระบบ LINE...';
+
+      liff.login({
+        redirectUri: window.location.href
+      });
+
+      return;
+    }
+
+    idToken = liff.getIDToken();
+
+    if (!idToken) {
+      throw new Error('ไม่ได้รับ ID Token — ตรวจว่า LIFF Scope มี openid');
+    }
+
+    lineProfile = await liff.getProfile();
+
+    $('displayName').textContent =
+      lineProfile.displayName || 'LINE User';
+
+    $('lineState').textContent =
+      'เชื่อมต่อ LINE สำเร็จ ✓';
+
+    if (lineProfile.pictureUrl) {
+      $('avatar').src = lineProfile.pictureUrl;
+    }
+
+    clearMessage();
+    getLocation();
+    updateReady();
+
+  } catch (err) {
+
+    console.error(err);
+
+    $('displayName').textContent =
+      'เชื่อมต่อ LINE ไม่สำเร็จ';
+
+    $('lineState').textContent =
+      err.message || String(err);
+
+    showError(
+      'LIFF ERROR: ' +
+      (err.message || String(err))
+    );
+
+    debugLog(err && err.stack ? err.stack : String(err));
+  }
+}
+
+
+/*************************************************
+ * GPS
+ *************************************************/
+
+function getLocation() {
+
+  if (!navigator.geolocation) {
+    showError('อุปกรณ์นี้ไม่รองรับการอ่านพิกัด');
+    return;
+  }
+
+  $('gpsBtn').disabled = true;
+  $('gpsMain').textContent = 'กำลังค้นหาพิกัด...';
+  $('gpsSub').textContent = 'กรุณาอนุญาตการใช้ Location';
+
+  navigator.geolocation.getCurrentPosition(
+
+    pos => {
+
+      currentLocation = {
+        latitude: Number(pos.coords.latitude),
+        longitude: Number(pos.coords.longitude),
+        accuracy: Number(pos.coords.accuracy || 0)
+      };
+
+      $('gpsMain').textContent = 'ได้รับพิกัดแล้ว ✓';
+
+      $('gpsSub').textContent =
+        `${currentLocation.latitude.toFixed(6)}, ` +
+        `${currentLocation.longitude.toFixed(6)} · ` +
+        `แม่นยำประมาณ ${Math.round(currentLocation.accuracy)} ม.`;
+
+      const d = haversine(
+        currentLocation.latitude,
+        currentLocation.longitude,
+        OFFICE_LAT,
+        OFFICE_LNG
+      );
+
+      $('distanceText').textContent =
+        `ระยะจากจุดงานประมาณ ${Math.round(d)} เมตร` +
+        ` · กำหนดไม่เกิน ${MAX_DISTANCE_M} เมตร`;
+
+      $('gpsBtn').disabled = false;
+
+      clearMessage();
+      updateReady();
+    },
+
+    err => {
+
+      $('gpsBtn').disabled = false;
+      $('gpsMain').textContent = 'ไม่ได้รับพิกัด';
+      $('gpsSub').textContent =
+        'กรุณาเปิด Location และอนุญาตให้ LINE ใช้ตำแหน่ง';
+
+      showError(
+        'อ่านพิกัดไม่สำเร็จ: ' +
+        geoError(err)
+      );
+
+      updateReady();
+    },
+
+    {
+      enableHighAccuracy: true,
+      timeout: 20000,
+      maximumAge: 0
+    }
+  );
+}
+
+
+/*************************************************
+ * CAMERA
+ *************************************************/
+
+$('camera').addEventListener('change', async e => {
+
+  const file =
+    e.target.files &&
+    e.target.files[0];
+
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    showError('กรุณาเลือกไฟล์รูปภาพ');
+    return;
+  }
+
+  try {
+
+    compressedImage =
+      await compressImage(file, 1000, 0.68);
+
+    $('preview').src =
+      compressedImage;
+
+    $('preview').style.display =
+      'block';
+
+    $('photoHint').style.display =
+      'none';
+
+    clearMessage();
+    updateReady();
+
+  } catch (err) {
+
+    showError(
+      'เตรียมรูปไม่สำเร็จ: ' +
+      (err.message || err)
+    );
+  }
+});
+
+
+/*************************************************
+ * SUBMIT TO GOOGLE APPS SCRIPT
+ *
+ * ใช้ HTML FORM + hidden iframe
+ * ไม่ใช้ google.script.run
+ * ไม่ใช้ fetch จึงไม่ติด CORS
+ *************************************************/
+
+function submitCheckin() {
+
+  clearMessage();
+
+  if (
+    !GAS_WEB_APP_URL ||
+    GAS_WEB_APP_URL.includes('ใส่_')
+  ) {
+    showError(
+      'ยังไม่ได้ใส่ GAS_WEB_APP_URL ใน index.html'
+    );
+    return;
+  }
+
+  if (!idToken) {
+    showError('ยังไม่ได้ยืนยันตัวตน LINE');
+    return;
+  }
+
+  if (!currentLocation) {
+    showError('กรุณารับพิกัดก่อน');
+    return;
+  }
+
+  if (!compressedImage) {
+    showError('กรุณาถ่ายรูปก่อน');
+    return;
+  }
+
+  const distance = haversine(
+    currentLocation.latitude,
+    currentLocation.longitude,
+    OFFICE_LAT,
+    OFFICE_LNG
+  );
+
+  if (
+    MAX_DISTANCE_M > 0 &&
+    distance > MAX_DISTANCE_M
+  ) {
+    showError(
+      `อยู่นอกพื้นที่เช็คอิน ` +
+      `(${Math.round(distance)} เมตร) ` +
+      `กำหนดไม่เกิน ${MAX_DISTANCE_M} เมตร`
+    );
+    return;
+  }
+
+  setLoading(true);
+  $('checkinBtn').disabled = true;
+
+  const form =
+    document.createElement('form');
+
+  form.method = 'POST';
+  form.action = GAS_WEB_APP_URL;
+  form.target = 'gasResultFrame';
+  form.style.display = 'none';
+
+  const fields = {
+    action: 'saveAttendance',
+    idToken: idToken,
+    latitude: currentLocation.latitude,
+    longitude: currentLocation.longitude,
+    accuracy: currentLocation.accuracy,
+    imageDataUrl: compressedImage
+  };
+
+  Object.entries(fields).forEach(([name,value]) => {
+
+    const input =
+      document.createElement('input');
+
+    input.type = 'hidden';
+    input.name = name;
+    input.value = String(value);
+
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+
+  // timeout เผื่อ backend ไม่ตอบ
+  clearTimeout(submitTimeout);
+
+  submitTimeout = setTimeout(() => {
+    setLoading(false);
+    showError(
+      'รอการตอบกลับนานเกินไป กรุณาตรวจ Apps Script deployment'
+    );
+    updateReady();
+  }, 30000);
+
+  form.submit();
+
+  setTimeout(() => {
+    form.remove();
+  }, 2000);
+}
+
+
+/*************************************************
+ * รับผลจาก Apps Script
+ *************************************************/
+
+window.addEventListener('message', event => {
+
+  if (!event.data ||
+      event.data.source !== 'SLAY_ATTENDANCE_BACKEND') {
+    return;
+  }
+
+  clearTimeout(submitTimeout);
+  setLoading(false);
+
+  const result = event.data.payload;
+
+  if (result && result.ok) {
+
+    showOk(
+      `เช็คอินสำเร็จ<br>` +
+      `${escapeHtml(result.name)} · ` +
+      `${escapeHtml(result.date)} ` +
+      `${escapeHtml(result.time)}` +
+      (result.flexSent
+        ? '<br>ส่ง Flex กลับ LINE แล้ว ✓'
+        : '<br>บันทึกสำเร็จ แต่ Flex ส่งไม่สำเร็จ')
+    );
+
+    $('checkinBtn').textContent =
+      '✓ เช็คอินเรียบร้อย';
+
+    $('checkinBtn').disabled =
+      true;
+
+  } else if (
+    result &&
+    result.duplicate
+  ) {
+
+    showError(
+      `วันนี้เช็คอินไปแล้ว<br>` +
+      `${escapeHtml(result.date)} ` +
+      `${escapeHtml(result.time)}`
+    );
+
+    $('checkinBtn').disabled =
+      true;
+
+  } else {
+
+    showError(
+      (result && result.message) ||
+      'บันทึกไม่สำเร็จ'
+    );
+
+    updateReady();
+  }
+});
+
+
+/*************************************************
+ * HELPERS
+ *************************************************/
+
+function updateReady() {
+
+  $('checkinBtn').disabled =
+    !(
+      idToken &&
+      currentLocation &&
+      compressedImage
+    );
+}
+
+function compressImage(
+  file,
+  maxSide,
+  quality
+) {
+
+  return new Promise(
+    (resolve,reject) => {
+
+      const img =
+        new Image();
+
+      const reader =
+        new FileReader();
+
+      reader.onload = e => {
+
+        img.onload = () => {
+
+          let w =
+            img.naturalWidth;
+
+          let h =
+            img.naturalHeight;
+
+          const scale =
+            Math.min(
+              1,
+              maxSide /
+              Math.max(w,h)
+            );
+
+          w =
+            Math.round(
+              w * scale
+            );
+
+          h =
+            Math.round(
+              h * scale
+            );
+
+          const canvas =
+            document.createElement('canvas');
+
+          canvas.width =
+            w;
+
+          canvas.height =
+            h;
+
+          const ctx =
+            canvas.getContext('2d');
+
+          ctx.drawImage(
+            img,
+            0,
+            0,
+            w,
+            h
+          );
+
+          resolve(
+            canvas.toDataURL(
+              'image/jpeg',
+              quality
+            )
+          );
+        };
+
+        img.onerror =
+          () =>
+            reject(
+              new Error(
+                'อ่านรูปไม่ได้'
+              )
+            );
+
+        img.src =
+          e.target.result;
+      };
+
+      reader.onerror =
+        () =>
+          reject(
+            new Error(
+              'อ่านไฟล์ไม่ได้'
+            )
+          );
+
+      reader.readAsDataURL(
+        file
+      );
+    }
+  );
+}
+
+function haversine(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+) {
+
+  lat1 = Number(lat1);
+  lon1 = Number(lon1);
+  lat2 = Number(lat2);
+  lon2 = Number(lon2);
+
+  const R =
+    6371000;
+
+  const toRad =
+    d =>
+      d *
+      Math.PI /
+      180;
+
+  const p1 =
+    toRad(lat1);
+
+  const p2 =
+    toRad(lat2);
+
+  const dp =
+    toRad(
+      lat2 -
+      lat1
+    );
+
+  const dl =
+    toRad(
+      lon2 -
+      lon1
+    );
+
+  const a =
+    Math.sin(dp/2) ** 2 +
+    Math.cos(p1) *
+    Math.cos(p2) *
+    Math.sin(dl/2) ** 2;
+
+  return (
+    R *
+    2 *
+    Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1-a)
+    )
+  );
+}
+
+function geoError(err) {
+
+  if (!err)
+    return 'ไม่ทราบสาเหตุ';
+
+  if (err.code === 1)
+    return 'ไม่ได้รับอนุญาตให้ใช้ Location';
+
+  if (err.code === 2)
+    return 'หา Location ไม่เจอ';
+
+  if (err.code === 3)
+    return 'ค้นหา Location นานเกินไป';
+
+  return (
+    err.message ||
+    'ไม่ทราบสาเหตุ'
+  );
+}
+
+function setLoading(on) {
+  $('loading').classList.toggle(
+    'show',
+    !!on
+  );
+}
+
+function clearMessage() {
+  $('message').className =
+    'msg';
+
+  $('message').innerHTML =
+    '';
+}
+
+function showOk(html) {
+  $('message').className =
+    'msg ok';
+
+  $('message').innerHTML =
+    html;
+}
+
+function showError(err) {
+
+  const text =
+    typeof err === 'string'
+      ? err
+      : (
+          err &&
+          err.message
+            ? err.message
+            : String(err)
+        );
+
+  $('message').className =
+    'msg err';
+
+  $('message').innerHTML =
+    text;
+}
+
+function debugLog(text) {
+
+  console.log(text);
+
+  // เปลี่ยน false เป็น true หากต้องการโชว์ Debug บนหน้า
+  const SHOW_DEBUG = false;
+
+  if (!SHOW_DEBUG)
+    return;
+
+  $('debug').style.display =
+    'block';
+
+  $('debug').textContent +=
+    String(text) + '\n';
+}
+
+function escapeHtml(s) {
+
+  return String(s ?? '')
+    .replace(
+      /[&<>"']/g,
+      c => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#039;'
+      }[c])
+    );
+}
+</script>
+
+</body>
+</html>

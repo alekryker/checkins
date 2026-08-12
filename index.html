@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
   <meta charset="utf-8">
 
   <meta
@@ -13,33 +15,56 @@
     content="#111111"
   >
 
-  <title>เช็คชื่อเข้างาน | SLAY ROIET</title>
+  <title>
+    เช็คชื่อเข้างาน | SLAY ROIET
+  </title>
 
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
 
   <style>
 
     :root{
+
       --bg:#f5f5f5;
+
       --card:#ffffff;
+
       --text:#111111;
+
       --muted:#777777;
-      --green:#18ad79;
-      --red:#d82128;
+
+      --green:#19a974;
+
+      --red:#b81746;
+
     }
+
 
     *{
       box-sizing:border-box;
     }
 
+
     html,
     body{
+
       margin:0;
+
       padding:0;
+
+      min-height:100%;
+
     }
 
+
     body{
-      background:var(--bg);
+
+      background:
+      var(--bg);
+
+      color:
+      var(--text);
 
       font-family:
       -apple-system,
@@ -48,479 +73,720 @@
       "Noto Sans Thai",
       sans-serif;
 
-      color:var(--text);
-
-      min-height:100vh;
     }
+
 
     .wrap{
-      max-width:560px;
-      margin:auto;
-      padding:16px 14px 40px;
+
+      max-width:
+      560px;
+
+      margin:
+      0 auto;
+
+      padding:
+      16px 14px 40px;
+
     }
+
+
+    /*************************************************
+     * HEADER
+     *************************************************/
 
     .header{
 
-      background:#111;
+      background:
+      #111111;
 
-      border-radius:25px;
+      color:
+      #ffffff;
 
-      padding:22px;
+      border-radius:
+      26px;
 
-      color:#fff;
+      padding:
+      23px;
 
       box-shadow:
-      0 12px 30px
-      rgba(0,0,0,.12);
+      0 14px 35px
+      rgba(0,0,0,.13);
 
     }
+
 
     .eyebrow{
 
-      font-size:12px;
+      color:
+      #ff7299;
 
-      color:#aaa;
+      font-size:
+      11px;
 
-      font-weight:800;
+      letter-spacing:
+      1.8px;
 
-      letter-spacing:1.8px;
+      font-weight:
+      900;
 
     }
+
 
     h1{
 
-      font-size:28px;
-
       margin:
-      6px 0
-      5px;
+      6px 0 5px;
+
+      font-size:
+      29px;
+
+      line-height:
+      1.15;
 
     }
 
-    .sub{
 
-      color:#bbb;
+    .subtitle{
 
-      font-size:14px;
+      color:
+      #bbbbbb;
+
+      font-size:
+      13px;
 
     }
+
 
     .profile{
 
-      display:flex;
+      display:
+      flex;
 
-      align-items:center;
+      align-items:
+      center;
 
-      gap:12px;
+      gap:
+      13px;
 
-      margin-top:20px;
+      margin-top:
+      21px;
 
     }
+
 
     .avatar{
 
-      width:50px;
+      width:
+      52px;
 
-      height:50px;
+      height:
+      52px;
 
-      border-radius:50%;
+      border-radius:
+      50%;
 
-      background:#333;
+      background:
+      #333333;
 
-      object-fit:cover;
+      object-fit:
+      cover;
+
+      border:
+      2px solid
+      rgba(255,255,255,.15);
 
     }
+
 
     .profile-name{
 
-      font-size:16px;
+      font-size:
+      17px;
 
-      font-weight:800;
+      font-weight:
+      900;
 
     }
+
 
     .profile-state{
 
-      color:#aaa;
+      margin-top:
+      4px;
 
-      font-size:12px;
+      font-size:
+      12px;
 
-      margin-top:3px;
+      color:
+      #aaaaaa;
 
     }
 
+
+    /*************************************************
+     * CARD
+     *************************************************/
+
     .card{
 
-      background:#fff;
+      margin-top:
+      14px;
 
-      border-radius:23px;
+      padding:
+      18px;
 
-      padding:18px;
+      background:
+      #ffffff;
 
-      margin-top:14px;
+      border-radius:
+      23px;
 
       box-shadow:
-      0 7px 25px
+      0 7px 26px
       rgba(0,0,0,.05);
 
     }
 
+
     .card-title{
 
-      font-size:19px;
+      font-size:
+      18px;
 
-      font-weight:800;
+      font-weight:
+      900;
 
-      margin-bottom:14px;
+      margin-bottom:
+      14px;
 
     }
+
+
+    /*************************************************
+     * GPS
+     *************************************************/
 
     .gps-box{
 
+      display:
+      flex;
+
+      align-items:
+      center;
+
+      gap:
+      12px;
+
       border:
       1px solid
-      #e7e7e7;
+      #e8e8e8;
 
-      border-radius:17px;
+      border-radius:
+      17px;
 
-      padding:14px;
-
-      display:flex;
-
-      gap:12px;
-
-      align-items:center;
+      padding:
+      14px;
 
     }
+
 
     .gps-icon{
 
-      width:44px;
+      width:
+      44px;
 
-      height:44px;
+      height:
+      44px;
 
-      border-radius:14px;
+      flex:
+      0 0 44px;
 
-      background:#eaf8f3;
+      display:
+      flex;
 
-      display:flex;
+      align-items:
+      center;
 
-      justify-content:center;
+      justify-content:
+      center;
 
-      align-items:center;
+      border-radius:
+      14px;
 
-      font-size:22px;
+      background:
+      #eaf9f3;
 
-      flex-shrink:0;
+      font-size:
+      22px;
 
     }
+
 
     .gps-title{
 
-      font-size:15px;
+      font-size:
+      14px;
 
-      font-weight:800;
+      font-weight:
+      900;
 
     }
+
 
     .gps-detail{
 
-      font-size:12px;
+      margin-top:
+      4px;
 
-      color:#777;
+      color:
+      #777777;
 
-      margin-top:4px;
+      font-size:
+      11px;
 
-      overflow-wrap:anywhere;
+      line-height:
+      1.45;
 
-    }
-
-    button{
-
-      font-family:inherit;
-
-    }
-
-    .btn{
-
-      width:100%;
-
-      border:0;
-
-      border-radius:16px;
-
-      padding:15px;
-
-      font-size:16px;
-
-      font-weight:800;
-
-      cursor:pointer;
+      overflow-wrap:
+      anywhere;
 
     }
 
-    .btn-location{
-
-      margin-top:12px;
-
-      background:#eeeeee;
-
-      color:#111;
-
-    }
-
-    .btn:disabled{
-
-      opacity:.45;
-
-    }
 
     .distance{
 
-      margin-top:10px;
+      margin-top:
+      10px;
 
-      font-size:12px;
+      font-size:
+      12px;
 
-      color:#999;
+      line-height:
+      1.45;
 
     }
+
 
     .distance.ok{
 
-      color:#14815c;
+      color:
+      #14815b;
 
-      font-weight:700;
+      font-weight:
+      800;
 
     }
+
 
     .distance.bad{
 
-      color:#c51e26;
+      color:
+      #c42026;
 
-      font-weight:700;
+      font-weight:
+      800;
 
     }
+
+
+    /*************************************************
+     * BUTTON
+     *************************************************/
+
+    button{
+
+      font-family:
+      inherit;
+
+    }
+
+
+    .btn{
+
+      width:
+      100%;
+
+      border:
+      0;
+
+      border-radius:
+      16px;
+
+      padding:
+      15px;
+
+      cursor:
+      pointer;
+
+      font-size:
+      15px;
+
+      font-weight:
+      900;
+
+    }
+
+
+    .btn:disabled{
+
+      opacity:
+      .45;
+
+      cursor:
+      not-allowed;
+
+    }
+
+
+    .location-btn{
+
+      margin-top:
+      12px;
+
+      background:
+      #eeeeee;
+
+      color:
+      #111111;
+
+    }
+
+
+    /*************************************************
+     * PHOTO
+     *************************************************/
 
     .photo-box{
 
-      width:100%;
+      position:
+      relative;
 
-      aspect-ratio:4/3;
+      width:
+      100%;
 
-      background:#eee;
+      aspect-ratio:
+      4 / 3;
 
-      border-radius:19px;
+      overflow:
+      hidden;
 
-      overflow:hidden;
+      display:
+      flex;
 
-      display:flex;
+      align-items:
+      center;
 
-      align-items:center;
+      justify-content:
+      center;
 
-      justify-content:center;
+      border-radius:
+      20px;
+
+      background:
+      #eeeeee;
 
       border:
       1px dashed
-      #ccc;
+      #cccccc;
 
     }
+
 
     .photo-box img{
 
-      width:100%;
+      width:
+      100%;
 
-      height:100%;
+      height:
+      100%;
 
-      object-fit:cover;
+      object-fit:
+      cover;
 
-      display:none;
+      display:
+      none;
 
     }
+
 
     .photo-placeholder{
 
-      color:#777;
+      text-align:
+      center;
 
-      font-size:14px;
+      color:
+      #777777;
 
-      text-align:center;
+      font-size:
+      14px;
+
+      line-height:
+      1.6;
+
+    }
+
+
+    .camera-button{
+
+      display:
+      block;
+
+      margin-top:
+      12px;
+
+      padding:
+      15px;
+
+      text-align:
+      center;
+
+      background:
+      #111111;
+
+      color:
+      #ffffff;
+
+      border-radius:
+      16px;
+
+      font-size:
+      16px;
+
+      font-weight:
+      900;
+
+      cursor:
+      pointer;
 
     }
 
-    .camera-btn{
-
-      display:block;
-
-      margin-top:12px;
-
-      background:#111;
-
-      color:#fff;
-
-      border-radius:16px;
-
-      padding:15px;
-
-      text-align:center;
-
-      font-size:16px;
-
-      font-weight:800;
-
-      cursor:pointer;
-
-    }
 
     input[type=file]{
 
-      display:none;
+      display:
+      none;
 
     }
 
-    .small-note{
 
-      font-size:11px;
+    .note{
 
-      color:#999;
+      margin-top:
+      9px;
 
-      margin-top:10px;
+      color:
+      #999999;
+
+      font-size:
+      11px;
+
+      line-height:
+      1.5;
 
     }
+
+
+    /*************************************************
+     * CHECK IN
+     *************************************************/
 
     .checkin-btn{
 
-      margin-top:15px;
+      margin-top:
+      15px;
 
-      background:var(--green);
+      padding:
+      18px;
 
-      color:#fff;
+      color:
+      #ffffff;
 
-      font-size:18px;
+      background:
+      var(--green);
 
-      padding:18px;
+      font-size:
+      18px;
 
-      border-radius:20px;
+      border-radius:
+      20px;
 
       box-shadow:
-      0 10px 24px
-      rgba(24,173,121,.20);
+      0 11px 24px
+      rgba(25,169,116,.22);
 
     }
+
+
+    /*************************************************
+     * MESSAGE
+     *************************************************/
 
     .message{
 
-      display:none;
+      display:
+      none;
 
-      padding:14px;
+      margin-top:
+      13px;
 
-      margin-top:13px;
+      padding:
+      14px;
 
-      border-radius:17px;
+      border-radius:
+      17px;
 
-      font-weight:700;
+      font-size:
+      14px;
 
-      line-height:1.5;
+      line-height:
+      1.55;
 
-      font-size:14px;
+      font-weight:
+      800;
 
     }
+
 
     .message.ok{
 
-      display:block;
+      display:
+      block;
 
-      background:#eaf9f3;
+      color:
+      #117653;
 
-      color:#107352;
+      background:
+      #eaf9f3;
 
     }
+
 
     .message.error{
 
-      display:block;
+      display:
+      block;
 
-      background:#fff0f0;
+      color:
+      #bd1f26;
 
-      color:#be2027;
+      background:
+      #fff0f0;
 
     }
+
+
+    /*************************************************
+     * LOADING
+     *************************************************/
 
     .loading{
 
-      display:none;
+      display:
+      none;
 
-      position:fixed;
+      position:
+      fixed;
 
-      inset:0;
+      inset:
+      0;
 
-      z-index:9999;
+      z-index:
+      99999;
+
+      align-items:
+      center;
+
+      justify-content:
+      center;
+
+      padding:
+      30px;
+
+      text-align:
+      center;
 
       background:
-      rgba(255,255,255,.92);
-
-      align-items:center;
-
-      justify-content:center;
-
-      text-align:center;
+      rgba(255,255,255,.93);
 
     }
+
 
     .loading.show{
 
-      display:flex;
+      display:
+      flex;
 
     }
+
 
     .loading-card{
 
-      background:#fff;
+      min-width:
+      220px;
 
-      padding:26px;
+      padding:
+      27px;
 
-      border-radius:25px;
+      border-radius:
+      25px;
+
+      background:
+      #ffffff;
 
       box-shadow:
       0 15px 45px
-      rgba(0,0,0,.15);
+      rgba(0,0,0,.16);
 
     }
+
 
     .spinner{
 
-      width:45px;
+      width:
+      45px;
 
-      height:45px;
+      height:
+      45px;
+
+      margin:
+      0 auto 15px;
 
       border:
       4px solid
-      #eee;
+      #eeeeee;
 
-      border-top-color:#111;
+      border-top-color:
+      #b81746;
 
-      border-radius:50%;
-
-      margin:
-      0 auto
-      15px;
+      border-radius:
+      50%;
 
       animation:
-      spin .8s linear infinite;
+      spin
+      .8s
+      linear
+      infinite;
 
     }
+
 
     @keyframes spin{
 
       to{
+
         transform:
         rotate(360deg);
+
       }
 
     }
 
+
   </style>
 
 </head>
+
+
 
 <body>
 
@@ -528,93 +794,138 @@
 <div class="wrap">
 
 
+  <!-- HEADER -->
+
   <section class="header">
 
+
     <div class="eyebrow">
+
       SLAY ROIET · STAFF ATTENDANCE
+
     </div>
+
 
     <h1>
+
       เช็คชื่อเข้างาน
+
     </h1>
 
-    <div class="sub">
-      LINE + พิกัด + รูปถ่ายปัจจุบัน
+
+    <div class="subtitle">
+
+      ยืนยันด้วย LINE + พิกัด + รูปถ่ายปัจจุบัน
+
     </div>
+
 
 
     <div class="profile">
 
+
       <img
         id="avatar"
         class="avatar"
+        alt=""
       >
 
+
       <div>
+
 
         <div
           id="displayName"
           class="profile-name"
         >
+
           กำลังเชื่อมต่อ LINE...
+
         </div>
+
 
         <div
           id="lineState"
           class="profile-state"
         >
+
           กรุณารอสักครู่
+
         </div>
+
 
       </div>
 
+
     </div>
+
 
   </section>
 
 
 
+  <!-- GPS -->
+
   <section class="card">
 
+
     <div class="card-title">
+
       1. พิกัดปัจจุบัน
+
     </div>
 
 
     <div class="gps-box">
 
+
       <div class="gps-icon">
+
         ⌖
+
       </div>
 
+
       <div>
+
 
         <div
           id="gpsTitle"
           class="gps-title"
         >
+
           ยังไม่ได้รับพิกัด
+
         </div>
+
 
         <div
           id="gpsDetail"
           class="gps-detail"
         >
+
           กรุณาอนุญาต Location
+
         </div>
 
+
       </div>
+
 
     </div>
 
 
+
     <button
       id="locationBtn"
-      class="btn btn-location"
+      class="btn location-btn"
       onclick="getLocation()"
     >
+
       📍 ใช้พิกัดปัจจุบัน
+
     </button>
+
 
 
     <div
@@ -622,41 +933,58 @@
       class="distance"
     ></div>
 
+
   </section>
 
 
 
+  <!-- PHOTO -->
+
   <section class="card">
 
+
     <div class="card-title">
+
       2. ถ่ายรูปยืนยัน
+
     </div>
 
 
+
     <div class="photo-box">
+
 
       <div
         id="photoPlaceholder"
         class="photo-placeholder"
       >
+
         📷
         <br>
         ยังไม่มีรูปถ่าย
+
       </div>
+
 
       <img
         id="photoPreview"
+        alt="รูปเช็คอิน"
       >
+
 
     </div>
 
 
+
     <label
       for="cameraInput"
-      class="camera-btn"
+      class="camera-button"
     >
+
       เปิดกล้องถ่ายรูป
+
     </label>
+
 
 
     <input
@@ -667,13 +995,19 @@
     >
 
 
-    <div class="small-note">
+
+    <div class="note">
+
       กรุณาถ่ายรูปปัจจุบันก่อนกดเช็คอิน
+
     </div>
+
 
   </section>
 
 
+
+  <!-- CHECK IN -->
 
   <button
     id="checkinBtn"
@@ -681,8 +1015,11 @@
     onclick="submitCheckin()"
     disabled
   >
+
     ✅ เช็คอินเข้างาน
+
   </button>
+
 
 
   <div
@@ -695,43 +1032,56 @@
 
 
 
+<!-- LOADING -->
+
 <div
   id="loading"
   class="loading"
 >
 
+
   <div class="loading-card">
+
 
     <div class="spinner"></div>
 
-    <div
-      style="
-      font-weight:800;
-      font-size:17px;
-      "
-    >
-      กำลังเช็คอิน...
-    </div>
 
     <div
+      id="loadingTitle"
       style="
-      margin-top:5px;
-      font-size:12px;
-      color:#777;
+      font-size:17px;
+      font-weight:900;
       "
     >
-      กรุณาอย่าปิดหน้านี้
+
+      กำลังบันทึกเช็คอิน...
+
     </div>
+
+
+    <div
+      id="loadingDetail"
+      style="
+      margin-top:6px;
+      color:#777;
+      font-size:12px;
+      "
+    >
+
+      กรุณาอย่าปิดหน้านี้
+
+    </div>
+
 
   </div>
+
 
 </div>
 
 
 
-<!--
-ส่ง POST ไป Apps Script
--->
+<!-- Apps Script POST -->
+
 <iframe
   id="gasFrame"
   name="gasFrame"
@@ -752,20 +1102,24 @@ const LIFF_ID =
 '2009168820-J1uzUVLZ';
 
 
+
 const GAS_WEB_APP_URL =
 'https://script.google.com/macros/s/AKfycbzMf1s3RGCWeJpA-LjX5EmjfE47WSylj1dCTkG7MFdv7Ta_7iZ19lWXENRqnZ-Guc4/exec';
 
 
-// SLAY ROIET
+
+/*************************************************
+ * SLAY ROIET
+ *************************************************/
+
 
 const OFFICE_LAT =
 16.0680965;
 
+
 const OFFICE_LNG =
 103.6506075;
 
-
-// ระยะอนุญาต
 
 const MAX_DISTANCE_M =
 200;
@@ -793,6 +1147,14 @@ let compressedImage =
 '';
 
 
+let backendTimeout =
+null;
+
+
+let submitted =
+false;
+
+
 
 const $ =
 id =>
@@ -801,24 +1163,34 @@ document.getElementById(id);
 
 
 /*************************************************
- * INIT LIFF
+ * START
  *************************************************/
 
 
 window.addEventListener(
-'load',
-initLiff
+
+  'load',
+
+  initLiff
+
 );
 
 
 
+/*************************************************
+ * LIFF
+ *************************************************/
+
+
 async function initLiff(){
+
 
   try{
 
 
     $('lineState').textContent =
     'กำลังเชื่อมต่อ LINE...';
+
 
 
     await liff.init({
@@ -829,9 +1201,11 @@ async function initLiff(){
     });
 
 
+
     if(
       !liff.isLoggedIn()
     ){
+
 
       liff.login({
 
@@ -839,6 +1213,7 @@ async function initLiff(){
         window.location.href
 
       });
+
 
       return;
 
@@ -856,7 +1231,9 @@ async function initLiff(){
     ){
 
       throw new Error(
-        'ไม่ได้รับ LINE ID Token'
+
+        'ไม่ได้รับ ID Token กรุณาตรวจ Scope openid'
+
       );
 
     }
@@ -887,10 +1264,14 @@ async function initLiff(){
     ){
 
       $('avatar').src =
+
       lineProfile.pictureUrl;
 
     }
 
+
+
+    clearMessage();
 
 
     getLocation();
@@ -910,7 +1291,9 @@ async function initLiff(){
 
 
     $('displayName').textContent =
+
     'เชื่อมต่อ LINE ไม่สำเร็จ';
+
 
 
     $('lineState').textContent =
@@ -918,6 +1301,7 @@ async function initLiff(){
     error.message ||
 
     String(error);
+
 
 
     showError(
@@ -951,7 +1335,9 @@ function getLocation(){
   ){
 
     showError(
+
       'อุปกรณ์นี้ไม่รองรับ Location'
+
     );
 
     return;
@@ -964,12 +1350,21 @@ function getLocation(){
   true;
 
 
+
   $('gpsTitle').textContent =
+
   'กำลังค้นหาพิกัด...';
 
 
 
-  navigator.geolocation
+  $('gpsDetail').textContent =
+
+  'กรุณาอนุญาต Location';
+
+
+
+  navigator
+  .geolocation
   .getCurrentPosition(
 
 
@@ -978,20 +1373,25 @@ function getLocation(){
 
       currentLocation = {
 
+
         latitude:
         Number(
           position.coords.latitude
         ),
+
 
         longitude:
         Number(
           position.coords.longitude
         ),
 
+
         accuracy:
         Number(
-          position.coords.accuracy || 0
+          position.coords.accuracy ||
+          0
         )
+
 
       };
 
@@ -1087,6 +1487,10 @@ function getLocation(){
             distance
           )
 
+        + ' เมตร · กำหนดไม่เกิน '
+
+        + MAX_DISTANCE_M
+
         + ' เมตร';
 
 
@@ -1100,6 +1504,7 @@ function getLocation(){
 
       updateButton();
 
+
     },
 
 
@@ -1110,11 +1515,19 @@ function getLocation(){
       false;
 
 
+
+      $('gpsTitle').textContent =
+
+      'ไม่ได้รับพิกัด';
+
+
+
       showError(
 
         'ไม่สามารถรับพิกัดได้ กรุณาอนุญาต Location'
 
       );
+
 
     },
 
@@ -1132,6 +1545,7 @@ function getLocation(){
 
     }
 
+
   );
 
 }
@@ -1146,83 +1560,98 @@ function getLocation(){
 $('cameraInput')
 .addEventListener(
 
-'change',
 
-async event => {
-
-
-  const file =
-
-  event.target.files &&
-
-  event.target.files[0];
+  'change',
 
 
+  async event => {
 
-  if(
-    !file
-  ){
 
-    return;
+    const file =
+
+    event.target.files &&
+
+    event.target.files[0];
+
+
+
+    if(
+      !file
+    ){
+
+      return;
+
+    }
+
+
+
+    try{
+
+
+      compressedImage =
+
+      await compressImage(
+
+        file,
+
+        1000,
+
+        0.70
+
+      );
+
+
+
+      $('photoPreview').src =
+
+      compressedImage;
+
+
+
+      $('photoPreview')
+      .style.display =
+
+      'block';
+
+
+
+      $('photoPlaceholder')
+      .style.display =
+
+      'none';
+
+
+
+      clearMessage();
+
+
+      updateButton();
+
+
+    }
+
+    catch(error){
+
+
+      console.error(
+        error
+      );
+
+
+      showError(
+
+        'เตรียมรูปไม่สำเร็จ'
+
+      );
+
+
+    }
+
 
   }
 
 
-
-  try{
-
-
-    compressedImage =
-
-    await compressImage(
-
-      file,
-
-      1000,
-
-      0.68
-
-    );
-
-
-
-    $('photoPreview').src =
-
-    compressedImage;
-
-
-
-    $('photoPreview')
-    .style.display =
-
-    'block';
-
-
-
-    $('photoPlaceholder')
-    .style.display =
-
-    'none';
-
-
-
-    updateButton();
-
-
-  }
-
-  catch(error){
-
-
-    showError(
-
-      'เตรียมรูปไม่สำเร็จ'
-
-    );
-
-  }
-
-});
+);
 
 
 
@@ -1231,10 +1660,20 @@ async event => {
  *************************************************/
 
 
-async function submitCheckin(){
+function submitCheckin(){
 
 
   clearMessage();
+
+
+
+  if(
+    submitted
+  ){
+
+    return;
+
+  }
 
 
 
@@ -1243,7 +1682,9 @@ async function submitCheckin(){
   ){
 
     showError(
-      'ยังไม่ได้เชื่อมต่อ LINE'
+
+      'ยังไม่ได้ยืนยัน LINE'
+
     );
 
     return;
@@ -1257,7 +1698,9 @@ async function submitCheckin(){
   ){
 
     showError(
+
       'กรุณารับพิกัดก่อน'
+
     );
 
     return;
@@ -1271,7 +1714,9 @@ async function submitCheckin(){
   ){
 
     showError(
+
       'กรุณาถ่ายรูปก่อน'
+
     );
 
     return;
@@ -1307,17 +1752,19 @@ async function submitCheckin(){
 
   ){
 
+
     showError(
 
-      'คุณอยู่นอกพื้นที่เช็คอิน '
+      'คุณอยู่นอกพื้นที่เช็คอิน (' +
 
-      + Math.round(
-          distance
-        )
+      Math.round(
+        distance
+      )
 
-      + ' เมตร'
+      + ' เมตร)'
 
     );
+
 
     return;
 
@@ -1325,14 +1772,9 @@ async function submitCheckin(){
 
 
 
-  /*************************************************
-   * LOADING
-   *************************************************/
+  submitted =
+  true;
 
-
-  setLoading(
-    true
-  );
 
 
   $('checkinBtn').disabled =
@@ -1340,114 +1782,71 @@ async function submitCheckin(){
 
 
 
-  /*************************************************
-   * ส่งข้อมูลไป Apps Script
-   *************************************************/
+  $('loadingTitle').textContent =
+
+  'กำลังบันทึกเช็คอิน...';
+
+
+
+  $('loadingDetail').textContent =
+
+  'กำลังอัปโหลดรูปและบันทึกข้อมูล';
+
+
+
+  setLoading(
+    true
+  );
+
 
 
   sendToBackend();
 
 
-
   /*************************************************
-   * รอ Apps Script บันทึก
+   * กันค้าง
    *************************************************/
 
+  backendTimeout =
 
-  await wait(
-    1800
+  setTimeout(
+
+    () => {
+
+
+      submitted =
+      false;
+
+
+      setLoading(
+        false
+      );
+
+
+      $('checkinBtn').disabled =
+      false;
+
+
+
+      showError(
+
+        'ไม่ได้รับผลจากระบบ กรุณาลองใหม่'
+
+      );
+
+
+    },
+
+    30000
+
   );
-
-
-
-  /*************************************************
-   * USER ส่ง FLEX
-   *************************************************/
-
-
-  try{
-
-
-    await sendCheckinFlex(
-      distance
-    );
-
-
-
-    showSuccess(
-
-      '✅ เช็คอินสำเร็จ<br>' +
-
-      'ส่งข้อมูลเข้าแชตเรียบร้อยแล้ว'
-
-    );
-
-
-
-    $('checkinBtn').textContent =
-
-    '✓ เช็คอินเรียบร้อย';
-
-
-
-    /*************************************************
-     * CLOSE LIFF
-     *************************************************/
-
-
-    await wait(
-      900
-    );
-
-
-    if(
-      liff.isInClient()
-    ){
-
-      liff.closeWindow();
-
-    }
-
-
-  }
-
-  catch(error){
-
-
-    console.error(
-      error
-    );
-
-
-    setLoading(
-      false
-    );
-
-
-    showError(
-
-      'บันทึกสำเร็จ แต่ส่ง Flex ไม่สำเร็จ<br>' +
-
-      (
-        error.message ||
-
-        error
-      )
-
-    );
-
-
-    $('checkinBtn').disabled =
-    false;
-
-  }
 
 }
 
 
 
 /*************************************************
- * SEND BACKEND
+ * POST APPS SCRIPT
  *************************************************/
 
 
@@ -1461,16 +1860,20 @@ function sendToBackend(){
   );
 
 
+
   form.method =
   'POST';
+
 
 
   form.action =
   GAS_WEB_APP_URL;
 
 
+
   form.target =
   'gasFrame';
+
 
 
   form.style.display =
@@ -1478,7 +1881,7 @@ function sendToBackend(){
 
 
 
-  const data = {
+  const values = {
 
 
     action:
@@ -1504,17 +1907,19 @@ function sendToBackend(){
     imageDataUrl:
     compressedImage
 
+
   };
 
 
 
   Object
   .entries(
-    data
+    values
   )
   .forEach(
 
-    ([key,value]) => {
+
+    ([name,value]) => {
 
 
       const input =
@@ -1524,12 +1929,15 @@ function sendToBackend(){
       );
 
 
+
       input.type =
       'hidden';
 
 
+
       input.name =
-      key;
+      name;
+
 
 
       input.value =
@@ -1538,11 +1946,14 @@ function sendToBackend(){
       );
 
 
+
       form.appendChild(
         input
       );
 
+
     }
+
 
   );
 
@@ -1554,6 +1965,7 @@ function sendToBackend(){
   );
 
 
+
   form.submit();
 
 
@@ -1562,12 +1974,15 @@ function sendToBackend(){
 
     () => {
 
+
       try{
 
         form.remove();
 
       }
+
       catch(e){}
+
 
     },
 
@@ -1580,12 +1995,332 @@ function sendToBackend(){
 
 
 /*************************************************
- * SEND FLEX BY USER
+ * RESULT FROM APPS SCRIPT
+ *************************************************/
+
+
+window.addEventListener(
+
+
+  'message',
+
+
+  async event => {
+
+
+    if(
+
+      !event.data
+
+      ||
+
+      event.data.source !==
+      'SLAY_ATTENDANCE_BACKEND'
+
+    ){
+
+      return;
+
+    }
+
+
+
+    clearTimeout(
+      backendTimeout
+    );
+
+
+
+    const result =
+
+    event.data.payload;
+
+
+
+    /*************************************************
+     * ERROR
+     *************************************************/
+
+
+    if(
+      !result
+    ){
+
+
+      submitted =
+      false;
+
+
+      setLoading(
+        false
+      );
+
+
+      $('checkinBtn').disabled =
+      false;
+
+
+      showError(
+
+        'ไม่พบผลการบันทึก'
+
+      );
+
+
+      return;
+
+    }
+
+
+
+    /*************************************************
+     * DUPLICATE
+     *************************************************/
+
+
+    if(
+      result.duplicate
+    ){
+
+
+      submitted =
+      false;
+
+
+      setLoading(
+        false
+      );
+
+
+      $('checkinBtn').disabled =
+      true;
+
+
+
+      showError(
+
+        'วันนี้คุณเช็คอินไปแล้ว<br>' +
+
+        (
+          result.time ||
+          ''
+        )
+
+      );
+
+
+      return;
+
+    }
+
+
+
+    /*************************************************
+     * FAILED
+     *************************************************/
+
+
+    if(
+      !result.ok
+    ){
+
+
+      submitted =
+      false;
+
+
+      setLoading(
+        false
+      );
+
+
+      $('checkinBtn').disabled =
+      false;
+
+
+
+      showError(
+
+        result.message ||
+
+        'บันทึกไม่สำเร็จ'
+
+      );
+
+
+      return;
+
+    }
+
+
+
+    /*************************************************
+     * PHOTO URL
+     *************************************************/
+
+
+    if(
+      !result.photoUrl
+    ){
+
+
+      submitted =
+      false;
+
+
+      setLoading(
+        false
+      );
+
+
+      $('checkinBtn').disabled =
+      false;
+
+
+
+      showError(
+
+        'บันทึกสำเร็จ แต่ไม่พบ URL รูปเช็คอิน'
+
+      );
+
+
+      return;
+
+    }
+
+
+
+    /*************************************************
+     * SEND FLEX
+     *************************************************/
+
+
+    try{
+
+
+      $('loadingTitle').textContent =
+
+      'บันทึกสำเร็จ ✓';
+
+
+
+      $('loadingDetail').textContent =
+
+      'กำลังส่ง Flex เข้าแชต...';
+
+
+
+      await sendCheckinFlex(
+
+        result
+
+      );
+
+
+
+      $('loadingTitle').textContent =
+
+      'เช็คอินเรียบร้อย ✓';
+
+
+
+      $('loadingDetail').textContent =
+
+      'กำลังปิดหน้าต่าง';
+
+
+
+      await wait(
+        900
+      );
+
+
+
+      if(
+        liff.isInClient()
+      ){
+
+
+        liff.closeWindow();
+
+
+      }
+
+      else{
+
+
+        setLoading(
+          false
+        );
+
+
+        showSuccess(
+
+          '✅ เช็คอินสำเร็จ<br>' +
+
+          'ส่ง Flex เรียบร้อยแล้ว'
+
+        );
+
+
+      }
+
+
+    }
+
+    catch(error){
+
+
+      console.error(
+        error
+      );
+
+
+      submitted =
+      false;
+
+
+      setLoading(
+        false
+      );
+
+
+      $('checkinBtn').disabled =
+      false;
+
+
+
+      showError(
+
+        'บันทึกสำเร็จ แต่ส่ง Flex ไม่สำเร็จ<br>' +
+
+        (
+          error.message ||
+
+          error
+        )
+
+      );
+
+
+    }
+
+
+  }
+
+
+);
+
+
+
+/*************************************************
+ * MODERN FLEX
  *************************************************/
 
 
 async function sendCheckinFlex(
-distance
+  result
 ){
 
 
@@ -1593,86 +2328,119 @@ distance
     !liff.isInClient()
   ){
 
+
     throw new Error(
-      'ต้องเปิดผ่านแอป LINE'
+
+      'ต้องเปิดระบบจากแอป LINE'
+
     );
+
 
   }
 
 
 
-  const now =
+  const name =
 
-  new Date();
+  result.name
+
+  ||
+
+  (
+    lineProfile
+    &&
+    lineProfile.displayName
+  )
+
+  ||
+
+  'พนักงาน';
 
 
 
   const date =
 
-  now.toLocaleDateString(
+  result.date
 
-    'th-TH',
+  ||
 
-    {
-
-      day:
-      '2-digit',
-
-      month:
-      '2-digit',
-
-      year:
-      'numeric'
-
-    }
-
+  new Date()
+  .toLocaleDateString(
+    'th-TH'
   );
 
 
 
   const time =
 
-  now.toLocaleTimeString(
+  result.time
+
+  ||
+
+  new Date()
+  .toLocaleTimeString(
 
     'th-TH',
 
     {
-
-      hour:
-      '2-digit',
-
-      minute:
-      '2-digit',
-
-      second:
-      '2-digit',
-
-      hour12:
-      false
-
+      hour12:false
     }
 
   );
 
 
 
+  const distance =
+
+  Number(
+
+    result.distance ||
+
+    calculateDistance(
+
+      currentLocation.latitude,
+
+      currentLocation.longitude,
+
+      OFFICE_LAT,
+
+      OFFICE_LNG
+
+    )
+
+  );
+
+
+
+  const photoUrl =
+
+  String(
+    result.photoUrl
+  );
+
+
+
   const mapUrl =
 
-  'https://www.google.com/maps?q='
+  result.mapUrl
 
-  + currentLocation.latitude
+  ||
 
-  + ','
+  (
+    'https://www.google.com/maps?q='
 
-  + currentLocation.longitude;
+    +
 
+    currentLocation.latitude
 
+    +
 
-  const name =
+    ','
 
-  lineProfile.displayName ||
+    +
 
-  'พนักงาน';
+    currentLocation.longitude
+  );
 
 
 
@@ -1681,6 +2449,7 @@ distance
 
     type:
     'flex',
+
 
 
     altText:
@@ -1700,10 +2469,60 @@ distance
       'bubble',
 
 
-
       size:
       'mega',
 
+
+
+      /*************************************************
+       * รูปเช็คอิน
+       *************************************************/
+
+
+      hero: {
+
+
+        type:
+        'image',
+
+
+        url:
+        photoUrl,
+
+
+        size:
+        'full',
+
+
+        aspectRatio:
+        '4:3',
+
+
+        aspectMode:
+        'cover',
+
+
+        action: {
+
+
+          type:
+          'uri',
+
+
+          uri:
+          photoUrl
+
+
+        }
+
+
+      },
+
+
+
+      /*************************************************
+       * GRADIENT STYLE HEADER
+       *************************************************/
 
 
       header: {
@@ -1718,82 +2537,275 @@ distance
 
 
         paddingAll:
-        '20px',
-
-
-        backgroundColor:
-        '#111111',
+        '0px',
 
 
         contents: [
 
 
+          /*********************************************
+           * COLOR 1
+           *********************************************/
+
+
           {
 
+
             type:
-            'text',
+            'box',
 
-            text:
-            'SLAY ROIET',
 
-            color:
-            '#AAAAAA',
+            layout:
+            'vertical',
 
-            size:
-            'sm',
 
-            weight:
-            'bold'
+            backgroundColor:
+            '#240813',
+
+
+            paddingStart:
+            '20px',
+
+
+            paddingEnd:
+            '20px',
+
+
+            paddingTop:
+            '15px',
+
+
+            paddingBottom:
+            '7px',
+
+
+            contents: [
+
+
+              {
+
+
+                type:
+                'text',
+
+
+                text:
+                'SLAY ROIET',
+
+
+                color:
+                '#FF709A',
+
+
+                size:
+                'xs',
+
+
+                weight:
+                'bold'
+
+
+              }
+
+
+            ]
+
 
           },
 
 
+
+          /*********************************************
+           * COLOR 2
+           *********************************************/
+
+
           {
 
+
             type:
-            'text',
+            'box',
 
-            text:
-            'CHECK IN ✓',
 
-            color:
-            '#FFFFFF',
+            layout:
+            'horizontal',
 
-            size:
-            'xxl',
 
-            weight:
-            'bold',
+            backgroundColor:
+            '#65102E',
 
-            margin:
-            'sm'
+
+            paddingStart:
+            '20px',
+
+
+            paddingEnd:
+            '20px',
+
+
+            paddingTop:
+            '5px',
+
+
+            paddingBottom:
+            '6px',
+
+
+            alignItems:
+            'center',
+
+
+            contents: [
+
+
+              {
+
+
+                type:
+                'text',
+
+
+                text:
+                'CHECK IN',
+
+
+                color:
+                '#FFFFFF',
+
+
+                weight:
+                'bold',
+
+
+                size:
+                'xxl',
+
+
+                flex:
+                1
+
+
+              },
+
+
+              {
+
+
+                type:
+                'text',
+
+
+                text:
+                '✓',
+
+
+                color:
+                '#FFFFFF',
+
+
+                size:
+                'xl',
+
+
+                weight:
+                'bold',
+
+
+                align:
+                'end'
+
+
+              }
+
+
+            ]
+
 
           },
 
 
+
+          /*********************************************
+           * COLOR 3
+           *********************************************/
+
+
           {
 
+
             type:
-            'text',
+            'box',
 
-            text:
-            'บันทึกเวลาเข้างานเรียบร้อย',
 
-            color:
-            '#BBBBBB',
+            layout:
+            'vertical',
 
-            size:
-            'sm',
 
-            margin:
-            'sm'
+            backgroundColor:
+            '#B81746',
+
+
+            paddingStart:
+            '20px',
+
+
+            paddingEnd:
+            '20px',
+
+
+            paddingTop:
+            '6px',
+
+
+            paddingBottom:
+            '13px',
+
+
+            contents: [
+
+
+              {
+
+
+                type:
+                'text',
+
+
+                text:
+                'STAFF ATTENDANCE · SUCCESS',
+
+
+                color:
+                '#FFD4E1',
+
+
+                size:
+                'xs',
+
+
+                weight:
+                'bold'
+
+
+              }
+
+
+            ]
+
 
           }
 
+
         ]
+
 
       },
 
+
+
+      /*************************************************
+       * BODY
+       *************************************************/
 
 
       body: {
@@ -1815,19 +2827,217 @@ distance
         '20px',
 
 
+        backgroundColor:
+        '#FFFFFF',
+
+
         contents: [
 
 
-          flexRow(
 
-            'ชื่อ',
-
-            name
-
-          ),
+          /*********************************************
+           * USER
+           *********************************************/
 
 
-          flexRow(
+          {
+
+
+            type:
+            'box',
+
+
+            layout:
+            'horizontal',
+
+
+            alignItems:
+            'center',
+
+
+            contents: [
+
+
+              {
+
+
+                type:
+                'box',
+
+
+                layout:
+                'vertical',
+
+
+                width:
+                '44px',
+
+
+                height:
+                '44px',
+
+
+                cornerRadius:
+                '22px',
+
+
+                backgroundColor:
+                '#F7E9EF',
+
+
+                justifyContent:
+                'center',
+
+
+                alignItems:
+                'center',
+
+
+                contents: [
+
+
+                  {
+
+
+                    type:
+                    'text',
+
+
+                    text:
+                    '👤',
+
+
+                    size:
+                    'lg',
+
+
+                    align:
+                    'center'
+
+
+                  }
+
+
+                ]
+
+
+              },
+
+
+
+              {
+
+
+                type:
+                'box',
+
+
+                layout:
+                'vertical',
+
+
+                margin:
+                'md',
+
+
+                flex:
+                1,
+
+
+                contents: [
+
+
+                  {
+
+
+                    type:
+                    'text',
+
+
+                    text:
+                    'พนักงาน',
+
+
+                    color:
+                    '#999999',
+
+
+                    size:
+                    'xs'
+
+
+                  },
+
+
+                  {
+
+
+                    type:
+                    'text',
+
+
+                    text:
+                    name,
+
+
+                    color:
+                    '#111111',
+
+
+                    size:
+                    'lg',
+
+
+                    weight:
+                    'bold',
+
+
+                    wrap:
+                    true,
+
+
+                    margin:
+                    'xs'
+
+
+                  }
+
+
+                ]
+
+
+              }
+
+
+            ]
+
+
+          },
+
+
+
+          {
+
+
+            type:
+            'separator',
+
+
+            margin:
+            'md',
+
+
+            color:
+            '#EEEEEE'
+
+
+          },
+
+
+
+          modernFlexRow(
+
+            '📅',
 
             'วันที่',
 
@@ -1836,7 +3046,10 @@ distance
           ),
 
 
-          flexRow(
+
+          modernFlexRow(
+
+            '🕒',
 
             'เวลา',
 
@@ -1845,7 +3058,26 @@ distance
           ),
 
 
-          flexRow(
+
+          modernFlexRow(
+
+            '📍',
+
+            'ระยะจากร้าน',
+
+            Math.round(
+              distance
+            )
+
+            + ' เมตร'
+
+          ),
+
+
+
+          modernFlexRow(
+
+            '🎯',
 
             'GPS',
 
@@ -1855,61 +3087,218 @@ distance
                 currentLocation.accuracy
               )
 
-            + ' ม.'
+            + ' เมตร'
 
           ),
 
 
-          flexRow(
 
-            'ระยะจากร้าน',
-
-            Math.round(
-              distance
-            )
-
-            + ' ม.'
-
-          ),
+          /*********************************************
+           * STATUS
+           *********************************************/
 
 
           {
 
-            type:
-            'separator',
-
-            margin:
-            'md'
-
-          },
-
-
-          {
 
             type:
-            'text',
+            'box',
 
-            text:
-            '✅ อยู่ในพื้นที่เช็คอิน',
 
-            color:
-            '#18AD79',
+            layout:
+            'horizontal',
 
-            weight:
-            'bold',
-
-            size:
-            'sm',
 
             margin:
-            'md'
+            'lg',
+
+
+            paddingAll:
+            '14px',
+
+
+            cornerRadius:
+            '15px',
+
+
+            backgroundColor:
+            '#E9F9F2',
+
+
+            alignItems:
+            'center',
+
+
+            contents: [
+
+
+              {
+
+
+                type:
+                'box',
+
+
+                layout:
+                'vertical',
+
+
+                width:
+                '34px',
+
+
+                height:
+                '34px',
+
+
+                cornerRadius:
+                '17px',
+
+
+                backgroundColor:
+                '#19A974',
+
+
+                justifyContent:
+                'center',
+
+
+                alignItems:
+                'center',
+
+
+                contents: [
+
+
+                  {
+
+
+                    type:
+                    'text',
+
+
+                    text:
+                    '✓',
+
+
+                    color:
+                    '#FFFFFF',
+
+
+                    weight:
+                    'bold',
+
+
+                    align:
+                    'center'
+
+
+                  }
+
+
+                ]
+
+
+              },
+
+
+
+              {
+
+
+                type:
+                'box',
+
+
+                layout:
+                'vertical',
+
+
+                margin:
+                'md',
+
+
+                flex:
+                1,
+
+
+                contents: [
+
+
+                  {
+
+
+                    type:
+                    'text',
+
+
+                    text:
+                    'CHECK-IN SUCCESS',
+
+
+                    color:
+                    '#13815B',
+
+
+                    weight:
+                    'bold',
+
+
+                    size:
+                    'sm'
+
+
+                  },
+
+
+                  {
+
+
+                    type:
+                    'text',
+
+
+                    text:
+                    'อยู่ในพื้นที่เช็คอินเรียบร้อย',
+
+
+                    color:
+                    '#5E907C',
+
+
+                    size:
+                    'xs',
+
+
+                    margin:
+                    'xs'
+
+
+                  }
+
+
+                ]
+
+
+              }
+
+
+            ]
+
 
           }
 
+
         ]
+
 
       },
 
+
+
+      /*************************************************
+       * FOOTER
+       *************************************************/
 
 
       footer: {
@@ -1923,6 +3312,10 @@ distance
         'vertical',
 
 
+        spacing:
+        'sm',
+
+
         paddingAll:
         '16px',
 
@@ -1932,6 +3325,7 @@ distance
 
           {
 
+
             type:
             'button',
 
@@ -1940,8 +3334,12 @@ distance
             'primary',
 
 
+            height:
+            'sm',
+
+
             color:
-            '#111111',
+            '#B81746',
 
 
             action: {
@@ -1952,21 +3350,58 @@ distance
 
 
               label:
-              'ดูพิกัดบนแผนที่',
+              '📍 ดูพิกัดบนแผนที่',
 
 
               uri:
               mapUrl
 
+
             }
+
+
+          },
+
+
+
+          {
+
+
+            type:
+            'text',
+
+
+            text:
+            'SLAY ROIET · STAFF ATTENDANCE',
+
+
+            align:
+            'center',
+
+
+            color:
+            '#BBBBBB',
+
+
+            size:
+            'xxs',
+
+
+            margin:
+            'md'
+
 
           }
 
+
         ]
+
 
       }
 
+
     }
+
 
   };
 
@@ -1980,6 +3415,7 @@ distance
 
   );
 
+
 }
 
 
@@ -1989,9 +3425,14 @@ distance
  *************************************************/
 
 
-function flexRow(
-label,
-value
+function modernFlexRow(
+
+  icon,
+
+  label,
+
+  value
+
 ){
 
 
@@ -2006,64 +3447,120 @@ value
     'horizontal',
 
 
+    alignItems:
+    'center',
+
+
+    paddingTop:
+    '4px',
+
+
+    paddingBottom:
+    '4px',
+
+
     contents: [
 
 
       {
 
+
         type:
         'text',
 
-        text:
-        String(
-          label
-        ),
 
-        color:
-        '#777777',
+        text:
+        icon,
+
 
         size:
         'sm',
 
+
         flex:
-        4
+        0
+
 
       },
 
 
+
       {
+
 
         type:
         'text',
+
+
+        text:
+        label,
+
+
+        size:
+        'sm',
+
+
+        color:
+        '#888888',
+
+
+        margin:
+        'md',
+
+
+        flex:
+        5
+
+
+      },
+
+
+
+      {
+
+
+        type:
+        'text',
+
 
         text:
         String(
           value
         ),
 
-        color:
-        '#111111',
-
-        weight:
-        'bold',
 
         size:
         'sm',
 
+
+        color:
+        '#111111',
+
+
+        weight:
+        'bold',
+
+
         align:
         'end',
+
 
         flex:
         6,
 
+
         wrap:
         true
 
+
       }
+
 
     ]
 
+
   };
+
 
 }
 
@@ -2075,13 +3572,18 @@ value
 
 
 function compressImage(
-file,
-maxSide,
-quality
+
+  file,
+
+  maxSide,
+
+  quality
+
 ){
 
 
   return new Promise(
+
 
     (
       resolve,
@@ -2090,10 +3592,13 @@ quality
 
 
       const image =
+
       new Image();
 
 
+
       const reader =
+
       new FileReader();
 
 
@@ -2103,16 +3608,21 @@ quality
       event => {
 
 
+
         image.onload =
 
         () => {
 
 
+
           let width =
+
           image.naturalWidth;
 
 
+
           let height =
+
           image.naturalHeight;
 
 
@@ -2135,16 +3645,23 @@ quality
 
 
           width =
+
           Math.round(
+
             width *
             scale
+
           );
 
 
+
           height =
+
           Math.round(
+
             height *
             scale
+
           );
 
 
@@ -2156,8 +3673,10 @@ quality
           );
 
 
+
           canvas.width =
           width;
+
 
 
           canvas.height =
@@ -2201,6 +3720,7 @@ quality
 
           );
 
+
         };
 
 
@@ -2208,6 +3728,7 @@ quality
         image.onerror =
 
         () => {
+
 
           reject(
 
@@ -2217,12 +3738,15 @@ quality
 
           );
 
+
         };
 
 
 
         image.src =
+
         event.target.result;
+
 
       };
 
@@ -2232,6 +3756,7 @@ quality
 
       () => {
 
+
         reject(
 
           new Error(
@@ -2239,6 +3764,7 @@ quality
           )
 
         );
+
 
       };
 
@@ -2248,9 +3774,12 @@ quality
         file
       );
 
+
     }
 
+
   );
+
 
 }
 
@@ -2262,10 +3791,15 @@ quality
 
 
 function calculateDistance(
-lat1,
-lng1,
-lat2,
-lng2
+
+  lat1,
+
+  lng1,
+
+  lat2,
+
+  lng2
+
 ){
 
 
@@ -2273,35 +3807,55 @@ lng2
   6371000;
 
 
+
   const rad =
 
   value =>
 
-  value *
+  Number(value) *
+
   Math.PI /
+
   180;
 
 
 
   const p1 =
-  rad(lat1);
 
-
-  const p2 =
-  rad(lat2);
-
-
-  const dp =
   rad(
-    lat2 -
     lat1
   );
 
 
-  const dl =
+
+  const p2 =
+
   rad(
-    lng2 -
-    lng1
+    lat2
+  );
+
+
+
+  const deltaLat =
+
+  rad(
+
+    Number(lat2) -
+
+    Number(lat1)
+
+  );
+
+
+
+  const deltaLng =
+
+  rad(
+
+    Number(lng2) -
+
+    Number(lng1)
+
   );
 
 
@@ -2309,7 +3863,7 @@ lng2
   const a =
 
   Math.sin(
-    dp / 2
+    deltaLat / 2
   ) ** 2
 
   +
@@ -2323,26 +3877,29 @@ lng2
   *
 
   Math.sin(
-    dl / 2
+    deltaLng / 2
   ) ** 2;
 
 
 
-  return
+  return (
 
-  R *
+    R *
 
-  2 *
+    2 *
 
-  Math.atan2(
+    Math.atan2(
 
-    Math.sqrt(a),
+      Math.sqrt(a),
 
-    Math.sqrt(
-      1 - a
+      Math.sqrt(
+        1 - a
+      )
+
     )
 
   );
+
 
 }
 
@@ -2354,6 +3911,19 @@ lng2
 
 
 function updateButton(){
+
+
+  if(
+    submitted
+  ){
+
+    $('checkinBtn').disabled =
+    true;
+
+    return;
+
+  }
+
 
 
   $('checkinBtn').disabled =
@@ -2372,6 +3942,7 @@ function updateButton(){
 
   );
 
+
 }
 
 
@@ -2389,11 +3960,15 @@ function wait(ms){
     resolve =>
 
     setTimeout(
+
       resolve,
+
       ms
+
     )
 
   );
+
 
 }
 
@@ -2405,7 +3980,7 @@ function wait(ms){
 
 
 function setLoading(
-status
+  status
 ){
 
 
@@ -2415,9 +3990,12 @@ status
 
     'show',
 
-    status
+    Boolean(
+      status
+    )
 
   );
+
 
 }
 
@@ -2427,18 +4005,22 @@ function clearMessage(){
 
 
   $('message').className =
+
   'message';
 
 
+
   $('message').innerHTML =
+
   '';
+
 
 }
 
 
 
 function showSuccess(
-message
+  message
 ){
 
 
@@ -2447,19 +4029,24 @@ message
   );
 
 
+
   $('message').className =
+
   'message ok';
 
 
+
   $('message').innerHTML =
+
   message;
+
 
 }
 
 
 
 function showError(
-message
+  message
 ){
 
 
@@ -2468,12 +4055,19 @@ message
   );
 
 
+
   $('message').className =
+
   'message error';
 
 
+
   $('message').innerHTML =
-  message;
+
+  String(
+    message
+  );
+
 
 }
 
@@ -2482,4 +4076,5 @@ message
 
 
 </body>
+
 </html>

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-
 <meta charset="utf-8">
 
 <meta
@@ -10,278 +8,666 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>
-เช็คชื่อเข้างาน | SLAY ROIET
-</title>
+<meta
+  name="theme-color"
+  content="#720019"
+>
+
+<title>SLAY ROIET · Staff Attendance</title>
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-
 <style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+
+  --red-950:#220008;
+  --red-900:#3d0010;
+  --red-800:#620019;
+  --red-700:#860025;
+  --red-600:#ac0a35;
+  --red-500:#d7194a;
+  --red-400:#f13a68;
+  --red-300:#ff7897;
+
+  --bg:#f7f4f5;
+  --white:#ffffff;
+
+  --text:#171214;
+  --muted:#8f8589;
+
+  --success:#15976a;
+
+  --shadow:
+    0 18px 55px
+    rgba(89,0,21,.10);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  min-height:100%;
 }
 
 body{
 
-  margin:0;
-
-  background:#f4f4f4;
-
   font-family:
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  "Noto Sans Thai",
-  sans-serif;
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans Thai",
+    sans-serif;
 
-  color:#111;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(215,25,74,.13),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      #faf7f8 0%,
+      #f5f1f2 100%
+    );
+
+  color:var(--text);
+
+  min-height:100vh;
 
 }
 
-.wrap{
+
+/* =========================================================
+   BACKGROUND DECORATION
+========================================================= */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:340px;
+  height:340px;
+
+  border-radius:50%;
+
+  top:-190px;
+  left:-150px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(215,25,74,.21),
+      rgba(215,25,74,0)
+    );
+
+  pointer-events:none;
+
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.app{
+
+  width:100%;
 
   max-width:560px;
 
-  margin:auto;
+  margin:0 auto;
 
-  padding:16px 14px 40px;
+  padding:
+    16px
+    14px
+    calc(40px + env(safe-area-inset-bottom));
 
 }
 
 
-/*****************************************
- * HEADER
- *****************************************/
+/* =========================================================
+   HERO
+========================================================= */
 
-.header{
+.hero{
 
-  background:
-  linear-gradient(
-    145deg,
-    #0d0d0d,
-    #191919
-  );
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  padding:25px 23px 24px;
 
   color:#fff;
 
-  border-radius:26px;
-
-  padding:23px;
+  background:
+    linear-gradient(
+      145deg,
+      #180006 0%,
+      #480011 35%,
+      #8d0028 72%,
+      #d7194a 130%
+    );
 
   box-shadow:
-  0 15px 35px
-  rgba(0,0,0,.14);
+    0 25px 60px
+    rgba(107,0,26,.24);
 
 }
+
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:250px;
+  height:250px;
+
+  border-radius:50%;
+
+  right:-115px;
+  top:-120px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.24),
+      rgba(255,255,255,0)
+    );
+
+}
+
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:260px;
+  height:260px;
+
+  border-radius:50%;
+
+  left:-150px;
+  bottom:-210px;
+
+  background:
+    rgba(255,255,255,.07);
+
+}
+
+
+.hero-content{
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+
+.brand-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
 
 .brand{
 
-  color:#ff668e;
-
   font-size:11px;
 
-  letter-spacing:2px;
+  letter-spacing:2.4px;
 
   font-weight:900;
 
-}
-
-h1{
-
-  margin:7px 0 4px;
-
-  font-size:29px;
+  color:#ffabc0;
 
 }
 
-.subtitle{
 
-  color:#aaa;
+.status-chip{
+
+  padding:7px 10px;
+
+  border-radius:100px;
+
+  font-size:10px;
+
+  font-weight:800;
+
+  color:#fff;
+
+  background:
+    rgba(255,255,255,.13);
+
+  border:
+    1px solid
+    rgba(255,255,255,.13);
+
+  backdrop-filter:blur(12px);
+
+}
+
+
+.hero h1{
+
+  margin:
+    20px 0
+    5px;
+
+  font-size:
+    clamp(31px,8vw,40px);
+
+  line-height:1.05;
+
+  letter-spacing:-1px;
+
+}
+
+
+.hero-subtitle{
+
+  color:
+    rgba(255,255,255,.68);
 
   font-size:13px;
 
 }
 
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
 .profile{
 
-  margin-top:20px;
+  margin-top:25px;
 
   display:flex;
 
   align-items:center;
 
-  gap:12px;
+  gap:13px;
 
 }
 
-.avatar{
 
-  width:52px;
+.avatar-wrap{
 
-  height:52px;
+  width:58px;
+  height:58px;
 
   border-radius:50%;
 
-  background:#333;
+  padding:3px;
 
-  object-fit:cover;
-
-}
-
-.name{
-
-  font-size:17px;
-
-  font-weight:900;
-
-}
-
-.state{
-
-  color:#aaa;
-
-  font-size:12px;
-
-  margin-top:4px;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #ff7897
+    );
 
 }
 
 
-/*****************************************
- * SHIFT
- *****************************************/
-
-.shift-card{
-
-  margin-top:14px;
-
-  border-radius:20px;
-
-  padding:15px;
-
-  background:#fff;
-
-  display:none;
-
-  box-shadow:
-  0 7px 24px
-  rgba(0,0,0,.05);
-
-}
-
-.shift-card.show{
+.avatar{
 
   display:block;
 
-}
+  width:100%;
+  height:100%;
 
-.shift-label{
+  object-fit:cover;
 
-  font-size:11px;
+  border-radius:50%;
 
-  color:#999;
-
-  font-weight:700;
-
-}
-
-.shift-time{
-
-  font-size:21px;
-
-  margin-top:3px;
-
-  font-weight:900;
-
-}
-
-.shift-working{
-
-  color:#14815b;
-
-  font-size:12px;
-
-  margin-top:5px;
-
-  font-weight:800;
+  background:#2d151c;
 
 }
 
 
-/*****************************************
- * CARDS
- *****************************************/
+.profile-info{
 
-.card{
+  flex:1;
 
-  background:#fff;
-
-  margin-top:14px;
-
-  padding:18px;
-
-  border-radius:23px;
-
-  box-shadow:
-  0 7px 25px
-  rgba(0,0,0,.05);
+  min-width:0;
 
 }
 
-.title{
+
+.profile-name{
 
   font-size:18px;
 
   font-weight:900;
 
-  margin-bottom:14px;
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 
 }
 
 
-/*****************************************
- * GPS
- *****************************************/
+.profile-state{
 
-.gps{
+  margin-top:4px;
 
-  border:1px solid #e7e7e7;
+  font-size:12px;
 
-  border-radius:17px;
+  color:
+    rgba(255,255,255,.62);
 
-  padding:14px;
+}
+
+
+/* =========================================================
+   ACTIVE SHIFT
+========================================================= */
+
+.shift{
+
+  display:none;
+
+  position:relative;
+
+  overflow:hidden;
+
+  margin-top:14px;
+
+  padding:18px;
+
+  border-radius:24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff 0%,
+      #fff5f7 100%
+    );
+
+  box-shadow:var(--shadow);
+
+  border:
+    1px solid
+    rgba(215,25,74,.06);
+
+}
+
+
+.shift.show{
+  display:block;
+}
+
+
+.shift-top{
 
   display:flex;
 
-  gap:12px;
+  justify-content:space-between;
 
   align-items:center;
 
 }
 
-.gps-icon{
 
-  width:44px;
+.shift-label{
 
-  height:44px;
+  font-size:11px;
 
-  border-radius:14px;
+  font-weight:900;
 
-  background:#eaf9f3;
+  letter-spacing:.6px;
+
+  color:#a69a9e;
+
+}
+
+
+.live-badge{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:5px;
+
+  color:var(--success);
+
+  font-size:11px;
+
+  font-weight:900;
+
+}
+
+
+.live-dot{
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:var(--success);
+
+  box-shadow:
+    0 0 0 6px
+    rgba(21,151,106,.10);
+
+}
+
+
+.shift-time{
+
+  margin-top:9px;
+
+  font-size:23px;
+
+  font-weight:950;
+
+  color:#191416;
+
+}
+
+
+.shift-hint{
+
+  margin-top:6px;
+
+  color:#8e8387;
+
+  font-size:12px;
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card{
+
+  margin-top:14px;
+
+  padding:19px;
+
+  border-radius:25px;
+
+  background:
+    rgba(255,255,255,.94);
+
+  box-shadow:
+    0 14px 40px
+    rgba(43,16,25,.065);
+
+  border:
+    1px solid
+    rgba(92,43,59,.045);
+
+}
+
+
+.section-head{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:15px;
+
+}
+
+
+.step{
+
+  width:31px;
+  height:31px;
+
+  border-radius:11px;
 
   display:flex;
 
   justify-content:center;
+  align-items:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #870024,
+      #d7194a
+    );
+
+  color:#fff;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  box-shadow:
+    0 7px 16px
+    rgba(215,25,74,.20);
+
+}
+
+
+.section-title{
+
+  font-size:18px;
+
+  font-weight:950;
+
+}
+
+
+.section-subtitle{
+
+  margin-top:2px;
+
+  font-size:11px;
+
+  color:#a09599;
+
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.location-box{
+
+  display:flex;
 
   align-items:center;
+
+  gap:13px;
+
+  padding:15px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #faf7f8,
+      #fff
+    );
+
+  border:
+    1px solid
+    #eee8ea;
+
+}
+
+
+.location-icon{
+
+  width:48px;
+  height:48px;
+
+  border-radius:16px;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff0f4,
+      #ffe1e9
+    );
+
+  color:#c51443;
+
+  font-size:21px;
 
   flex-shrink:0;
 
 }
 
-.gps-title{
+
+.location-content{
+
+  min-width:0;
+  flex:1;
+
+}
+
+
+.location-title{
 
   font-size:14px;
 
@@ -289,42 +675,64 @@ h1{
 
 }
 
-.gps-detail{
 
-  font-size:11px;
-
-  color:#777;
+.location-detail{
 
   margin-top:4px;
 
+  color:#958a8e;
+
+  font-size:11px;
+
+  line-height:1.45;
+
+  word-break:break-all;
+
 }
 
-.distance{
 
-  margin-top:10px;
+.area-state{
+
+  margin-top:11px;
+
+  padding:10px 12px;
+
+  border-radius:13px;
 
   font-size:12px;
 
-  font-weight:800;
+  font-weight:850;
 
-}
-
-.distance.ok{
-
-  color:#14815b;
-
-}
-
-.distance.bad{
-
-  color:#c61f28;
+  display:none;
 
 }
 
 
-/*****************************************
- * BUTTON
- *****************************************/
+.area-state.ok{
+
+  display:block;
+
+  color:#137954;
+
+  background:#ecfaf4;
+
+}
+
+
+.area-state.bad{
+
+  display:block;
+
+  color:#ad1638;
+
+  background:#fff0f3;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
 
 .btn{
 
@@ -332,140 +740,289 @@ h1{
 
   border:0;
 
-  padding:15px;
-
-  border-radius:16px;
-
-  font-size:16px;
-
-  font-weight:900;
-
   font-family:inherit;
 
+  cursor:pointer;
+
+  transition:
+    transform .15s ease,
+    opacity .15s ease;
+
 }
+
+
+.btn:active{
+  transform:scale(.985);
+}
+
 
 .btn:disabled{
 
   opacity:.45;
 
+  cursor:not-allowed;
+
 }
 
-.location-btn{
+
+.soft-btn{
 
   margin-top:12px;
 
-  background:#eee;
+  padding:15px;
 
-}
+  border-radius:17px;
 
+  color:#b1143d;
 
-/*****************************************
- * PHOTO
- *****************************************/
+  background:
+    linear-gradient(
+      135deg,
+      #fff0f4,
+      #fde6ec
+    );
 
-.photo{
-
-  width:100%;
-
-  aspect-ratio:4/3;
-
-  border-radius:20px;
-
-  overflow:hidden;
-
-  background:#eee;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-}
-
-.photo img{
-
-  width:100%;
-
-  height:100%;
-
-  object-fit:cover;
-
-  display:none;
-
-}
-
-.photo-text{
-
-  color:#888;
-
-  text-align:center;
+  font-weight:900;
 
   font-size:14px;
 
 }
 
-.camera{
 
-  display:block;
+/* =========================================================
+   PHOTO
+========================================================= */
 
-  padding:15px;
+.photo-box{
 
-  margin-top:12px;
+  position:relative;
 
-  background:#111;
+  overflow:hidden;
 
-  color:#fff;
+  width:100%;
 
-  border-radius:16px;
+  aspect-ratio:4/3;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f3edef,
+      #faf8f9
+    );
+
+  border:
+    1px dashed
+    #e3d8dc;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+
+.photo-placeholder{
 
   text-align:center;
 
-  font-weight:900;
+  color:#a89ba0;
 
-}
-
-input[type=file]{
-
-  display:none;
+  font-size:13px;
 
 }
 
 
-/*****************************************
- * ACTION
- *****************************************/
+.photo-placeholder-icon{
 
-.action{
+  width:60px;
+  height:60px;
 
-  margin-top:15px;
+  margin:
+    0 auto
+    10px;
 
-  padding:19px;
+  display:flex;
 
-  color:#fff;
-
-  font-size:18px;
+  justify-content:center;
+  align-items:center;
 
   border-radius:20px;
 
-}
+  background:#fff;
 
-.action.checkin{
+  font-size:24px;
 
-  background:#18ad79;
-
-}
-
-.action.checkout{
-
-  background:#b81746;
+  box-shadow:
+    0 8px 25px
+    rgba(0,0,0,.05);
 
 }
 
 
-/*****************************************
- * MESSAGE
- *****************************************/
+.photo-preview{
+
+  display:none;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+}
+
+
+.photo-gradient{
+
+  display:none;
+
+  pointer-events:none;
+
+  position:absolute;
+
+  inset:auto 0 0 0;
+
+  height:70px;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(44,0,11,.35)
+    );
+
+}
+
+
+.photo-box.has-photo
+.photo-gradient{
+  display:block;
+}
+
+
+.camera-btn{
+
+  display:block;
+
+  margin-top:12px;
+
+  padding:16px;
+
+  border-radius:18px;
+
+  text-align:center;
+
+  font-size:15px;
+
+  font-weight:900;
+
+  color:#fff;
+
+  cursor:pointer;
+
+  background:
+    linear-gradient(
+      100deg,
+      #460011,
+      #9b002c,
+      #d7194a
+    );
+
+  box-shadow:
+    0 12px 25px
+    rgba(170,0,44,.18);
+
+}
+
+
+input[type=file]{
+  display:none;
+}
+
+
+/* =========================================================
+   MAIN ACTION
+========================================================= */
+
+.action-btn{
+
+  position:relative;
+
+  overflow:hidden;
+
+  margin-top:15px;
+
+  min-height:62px;
+
+  border-radius:21px;
+
+  color:#fff;
+
+  font-size:17px;
+
+  font-weight:950;
+
+  letter-spacing:-.2px;
+
+  box-shadow:
+    0 17px 35px
+    rgba(174,0,45,.21);
+
+}
+
+
+.action-btn::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:-80px;
+
+  left:-80px;
+
+  width:180px;
+  height:180px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  border-radius:50%;
+
+}
+
+
+.action-btn.checkin{
+
+  background:
+    linear-gradient(
+      105deg,
+      #540015 0%,
+      #a90031 50%,
+      #ee315f 110%
+    );
+
+}
+
+
+.action-btn.checkout{
+
+  background:
+    linear-gradient(
+      105deg,
+      #240007 0%,
+      #6e001d 45%,
+      #be1041 100%
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
 
 .message{
 
@@ -473,28 +1030,33 @@ input[type=file]{
 
   margin-top:13px;
 
-  border-radius:16px;
+  padding:14px 15px;
 
-  padding:14px;
+  border-radius:17px;
+
+  line-height:1.5;
+
+  font-size:13px;
 
   font-weight:800;
 
 }
 
+
 .message.error{
 
   display:block;
 
-  background:#fff0f0;
+  color:#a81738;
 
-  color:#bb1e26;
+  background:#fff0f3;
 
 }
 
 
-/*****************************************
- * LOADING
- *****************************************/
+/* =========================================================
+   LOADER
+========================================================= */
 
 .loading{
 
@@ -502,60 +1064,80 @@ input[type=file]{
 
   inset:0;
 
+  z-index:99999;
+
   display:none;
 
   justify-content:center;
 
   align-items:center;
 
-  background:
-  rgba(255,255,255,.93);
+  padding:25px;
 
-  z-index:9999;
+  background:
+    rgba(28,0,7,.55);
+
+  backdrop-filter:blur(13px);
 
 }
+
 
 .loading.show{
-
   display:flex;
-
 }
+
 
 .loading-card{
 
-  width:270px;
+  width:min(290px,100%);
 
-  background:#fff;
-
-  padding:28px;
-
-  border-radius:26px;
+  padding:28px 24px;
 
   text-align:center;
 
+  color:#fff;
+
+  border-radius:28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #250009,
+      #74001e,
+      #b90b3d
+    );
+
   box-shadow:
-  0 15px 45px
-  rgba(0,0,0,.16);
+    0 30px 80px
+    rgba(40,0,10,.40);
 
 }
+
 
 .spinner{
 
-  width:45px;
+  width:48px;
+  height:48px;
 
-  height:45px;
+  margin:
+    0 auto
+    18px;
 
-  border:4px solid #eee;
+  border:
+    4px solid
+    rgba(255,255,255,.17);
 
-  border-top-color:#b81746;
+  border-top-color:
+    #fff;
 
   border-radius:50%;
 
-  margin:0 auto 15px;
-
-  animation:spin .8s linear infinite;
+  animation:
+    spin .72s
+    linear infinite;
 
 }
+
 
 @keyframes spin{
 
@@ -565,205 +1147,355 @@ input[type=file]{
 
 }
 
+
+.loading-title{
+
+  font-size:18px;
+
+  font-weight:950;
+
+}
+
+
+.loading-detail{
+
+  margin-top:6px;
+
+  color:
+    rgba(255,255,255,.66);
+
+  font-size:12px;
+
+  line-height:1.4;
+
+}
+
+
+/* =========================================================
+   FOOT NOTE
+========================================================= */
+
+.footer-note{
+
+  margin-top:18px;
+
+  text-align:center;
+
+  font-size:10px;
+
+  letter-spacing:1px;
+
+  color:#b9adb1;
+
+  font-weight:800;
+
+}
+
 </style>
 
 </head>
 
 
-
 <body>
 
 
-<div class="wrap">
+<main class="app">
 
 
-<section class="header">
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
 
-  <div class="brand">
-    SLAY ROIET · STAFF
-  </div>
+  <section class="hero">
 
-  <h1>
-    เช็คชื่อเข้างาน
-  </h1>
+    <div class="hero-content">
 
-  <div class="subtitle">
-    ระบบลงเวลาเข้า–ออกงาน
-  </div>
+      <div class="brand-row">
+
+        <div class="brand">
+          SLAY ROIET · STAFF
+        </div>
+
+        <div class="status-chip">
+          ATTENDANCE
+        </div>
+
+      </div>
 
 
-  <div class="profile">
+      <h1>
+        เช็คชื่อเข้างาน
+      </h1>
 
-    <img
-      id="avatar"
-      class="avatar"
+
+      <div class="hero-subtitle">
+        ลงเวลาเข้า–ออกงานอย่างรวดเร็วผ่าน LINE
+      </div>
+
+
+      <div class="profile">
+
+        <div class="avatar-wrap">
+
+          <img
+            id="avatar"
+            class="avatar"
+            alt=""
+          >
+
+        </div>
+
+
+        <div class="profile-info">
+
+          <div
+            id="displayName"
+            class="profile-name"
+          >
+            กำลังเชื่อมต่อ LINE...
+          </div>
+
+          <div
+            id="lineState"
+            class="profile-state"
+          >
+            กรุณารอสักครู่
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       CURRENT SHIFT
+  ====================================================== -->
+
+  <section
+    id="shiftCard"
+    class="shift"
+  >
+
+    <div class="shift-top">
+
+      <div class="shift-label">
+        CURRENT SHIFT
+      </div>
+
+      <div class="live-badge">
+
+        <span class="live-dot"></span>
+
+        กำลังทำงาน
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="shiftTime"
+      class="shift-time"
+    >
+      -
+    </div>
+
+
+    <div class="shift-hint">
+      คุณยังไม่ได้ลงเวลาออก
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       LOCATION
+  ====================================================== -->
+
+  <section class="card">
+
+    <div class="section-head">
+
+      <div class="step">
+        01
+      </div>
+
+      <div>
+
+        <div class="section-title">
+          ยืนยันตำแหน่ง
+        </div>
+
+        <div class="section-subtitle">
+          ต้องอยู่ภายในพื้นที่ที่กำหนด
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="location-box">
+
+      <div class="location-icon">
+        ●
+      </div>
+
+
+      <div class="location-content">
+
+        <div
+          id="gpsTitle"
+          class="location-title"
+        >
+          กำลังรอตำแหน่ง
+        </div>
+
+        <div
+          id="gpsDetail"
+          class="location-detail"
+        >
+          กรุณาอนุญาต Location
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      id="locationBtn"
+      type="button"
+      class="btn soft-btn"
+      onclick="getLocation()"
+    >
+      อัปเดตตำแหน่งปัจจุบัน
+    </button>
+
+
+    <div
+      id="distanceText"
+      class="area-state"
+    ></div>
+
+  </section>
+
+
+  <!-- =====================================================
+       CAMERA
+  ====================================================== -->
+
+  <section class="card">
+
+    <div class="section-head">
+
+      <div class="step">
+        02
+      </div>
+
+      <div>
+
+        <div
+          id="photoTitle"
+          class="section-title"
+        >
+          ถ่ายรูปยืนยัน
+        </div>
+
+        <div class="section-subtitle">
+          ใช้รูปปัจจุบันสำหรับบันทึกเวลา
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="photoBox"
+      class="photo-box"
     >
 
-    <div>
-
       <div
-        id="displayName"
-        class="name"
+        id="photoPlaceholder"
+        class="photo-placeholder"
       >
-        กำลังเชื่อมต่อ LINE...
+
+        <div class="photo-placeholder-icon">
+          ◉
+        </div>
+
+        ยังไม่มีรูปยืนยัน
+
       </div>
 
-      <div
-        id="lineState"
-        class="state"
+
+      <img
+        id="photoPreview"
+        class="photo-preview"
+        alt="รูปลงเวลา"
       >
-        กรุณารอสักครู่
-      </div>
+
+
+      <div class="photo-gradient"></div>
 
     </div>
 
-  </div>
 
-</section>
-
-
-
-<div
-  id="shiftCard"
-  class="shift-card"
->
-
-  <div class="shift-label">
-    กำลังทำงาน
-  </div>
-
-  <div
-    id="shiftTime"
-    class="shift-time"
-  >
-    -
-  </div>
-
-  <div class="shift-working">
-    ● ยังไม่ได้ลงเวลาออก
-  </div>
-
-</div>
+    <label
+      for="camera"
+      class="camera-btn"
+    >
+      เปิดกล้องถ่ายรูป
+    </label>
 
 
+    <input
+      id="camera"
+      type="file"
+      accept="image/*"
+      capture="environment"
+    >
 
-<section class="card">
+  </section>
 
-  <div class="title">
-    1. ยืนยันตำแหน่ง
-  </div>
 
-  <div class="gps">
-
-    <div class="gps-icon">
-      📍
-    </div>
-
-    <div>
-
-      <div
-        id="gpsTitle"
-        class="gps-title"
-      >
-        ยังไม่ได้รับตำแหน่ง
-      </div>
-
-      <div
-        id="gpsDetail"
-        class="gps-detail"
-      >
-        กรุณาอนุญาต Location
-      </div>
-
-    </div>
-
-  </div>
-
+  <!-- =====================================================
+       ACTION
+  ====================================================== -->
 
   <button
-    id="locationBtn"
-    class="btn location-btn"
-    onclick="getLocation()"
+    id="actionBtn"
+    type="button"
+    class="btn action-btn checkin"
+    onclick="submitAttendance()"
+    disabled
   >
-    ใช้ตำแหน่งปัจจุบัน
+    เช็คชื่อเข้างาน
   </button>
 
 
   <div
-    id="distanceText"
-    class="distance"
+    id="message"
+    class="message"
   ></div>
 
-</section>
 
-
-
-<section class="card">
-
-  <div
-    id="photoTitle"
-    class="title"
-  >
-    2. ถ่ายรูปยืนยัน
+  <div class="footer-note">
+    SLAY ROIET · STAFF ATTENDANCE
   </div>
 
 
-  <div class="photo">
-
-    <div
-      id="photoText"
-      class="photo-text"
-    >
-      📷
-      <br>
-      ยังไม่มีรูป
-    </div>
-
-    <img
-      id="photoPreview"
-    >
-
-  </div>
+</main>
 
 
-  <label
-    for="camera"
-    class="camera"
-  >
-    เปิดกล้องถ่ายรูป
-  </label>
-
-
-  <input
-    id="camera"
-    type="file"
-    accept="image/*"
-    capture="environment"
-  >
-
-</section>
-
-
-
-<button
-  id="actionBtn"
-  class="btn action checkin"
-  onclick="submitAttendance()"
-  disabled
->
-  ✅ เช็คชื่อเข้างาน
-</button>
-
-
-<div
-  id="message"
-  class="message"
-></div>
-
-
-</div>
-
-
+<!-- =====================================================
+     LOADING
+====================================================== -->
 
 <div
   id="loading"
@@ -776,21 +1508,14 @@ input[type=file]{
 
     <div
       id="loadingTitle"
-      style="
-      font-weight:900;
-      font-size:17px;
-      "
+      class="loading-title"
     >
       กำลังบันทึก...
     </div>
 
     <div
       id="loadingDetail"
-      style="
-      font-size:12px;
-      color:#777;
-      margin-top:6px;
-      "
+      class="loading-detail"
     >
       กรุณารอสักครู่
     </div>
@@ -800,48 +1525,46 @@ input[type=file]{
 </div>
 
 
-
 <iframe
   name="gasFrame"
   style="display:none"
 ></iframe>
 
 
-
 <script>
 
-/*************************************************
- * CONFIG
- *************************************************/
+/* =========================================================
+   CONFIG
+========================================================= */
 
 const LIFF_ID =
-'2009168820-J1uzUVLZ';
+  '2009168820-J1uzUVLZ';
 
 
 const GAS_URL =
-'https://script.google.com/macros/s/AKfycbzMf1s3RGCWeJpA-LjX5EmjfE47WSylj1dCTkG7MFdv7Ta_7iZ19lWXENRqnZ-Guc4/exec';
-
-
-const OFFICE_LAT =
-16.143207;
-
-
-const OFFICE_LNG =
-103.659470;
-
-
-const MAX_DISTANCE_M =
-200;
+  'https://script.google.com/macros/s/AKfycbzMf1s3RGCWeJpA-LjX5EmjfE47WSylj1dCTkG7MFdv7Ta_7iZ19lWXENRqnZ-Guc4/exec';
 
 
 const LIFF_URL =
-'https://liff.line.me/2009168820-J1uzUVLZ';
+  'https://liff.line.me/2009168820-J1uzUVLZ';
+
+
+const OFFICE_LAT =
+  16.0680965;
+
+
+const OFFICE_LNG =
+  103.6506075;
+
+
+const MAX_DISTANCE_M =
+  200;
 
 
 
-/*************************************************
- * STATE
- *************************************************/
+/* =========================================================
+   STATE
+========================================================= */
 
 let idToken = '';
 
@@ -859,14 +1582,14 @@ let submitting = false;
 
 
 const $ =
-id =>
-document.getElementById(id);
+  id =>
+  document.getElementById(id);
 
 
 
-/*************************************************
- * INIT
- *************************************************/
+/* =========================================================
+   INIT
+========================================================= */
 
 window.addEventListener(
   'load',
@@ -879,7 +1602,8 @@ async function init(){
   try{
 
     await liff.init({
-      liffId:LIFF_ID
+      liffId:
+        LIFF_ID
     });
 
 
@@ -889,7 +1613,7 @@ async function init(){
 
       liff.login({
         redirectUri:
-        window.location.href
+          window.location.href
       });
 
       return;
@@ -899,6 +1623,17 @@ async function init(){
 
     idToken =
       liff.getIDToken();
+
+
+    if(
+      !idToken
+    ){
+
+      throw new Error(
+        'ไม่พบ LINE ID Token'
+      );
+
+    }
 
 
     profile =
@@ -911,7 +1646,7 @@ async function init(){
 
 
     $('lineState').textContent =
-      'เชื่อมต่อ LINE แล้ว ✓';
+      'เชื่อมต่อ LINE สำเร็จ';
 
 
     if(
@@ -934,11 +1669,14 @@ async function init(){
   catch(error){
 
     showError(
-      'LINE ERROR: ' +
+
+      'เชื่อมต่อ LINE ไม่สำเร็จ: ' +
+
       (
         error.message ||
         error
       )
+
     );
 
   }
@@ -947,16 +1685,20 @@ async function init(){
 
 
 
-/*************************************************
- * STATUS
- *************************************************/
+/* =========================================================
+   LOAD STATUS
+========================================================= */
 
 async function loadStatus(){
 
   setLoading(
+
     true,
-    'กำลังตรวจสอบสถานะ...',
-    'กำลังดูเวลาเข้า–ออก'
+
+    'กำลังตรวจสอบสถานะ',
+
+    'กำลังตรวจสอบเวลาเข้า–ออกล่าสุด'
+
   );
 
 
@@ -1008,7 +1750,9 @@ async function loadStatus(){
 
 
       $('shiftTime').textContent =
+
         'เข้างาน ' +
+
         (
           result.checkInTime ||
           '-'
@@ -1016,11 +1760,11 @@ async function loadStatus(){
 
 
       $('photoTitle').textContent =
-        '2. ถ่ายรูปก่อนลงเวลาออก';
+        'ถ่ายรูปก่อนออกงาน';
 
 
       $('actionBtn').textContent =
-        '⏰ ลงเวลาออก';
+        'ลงชื่อออกงาน';
 
 
       $('actionBtn')
@@ -1052,11 +1796,11 @@ async function loadStatus(){
 
 
       $('photoTitle').textContent =
-        '2. ถ่ายรูปยืนยัน';
+        'ถ่ายรูปยืนยัน';
 
 
       $('actionBtn').textContent =
-        '✅ เช็คชื่อเข้างาน';
+        'เช็คชื่อเข้างาน';
 
 
       $('actionBtn')
@@ -1100,9 +1844,9 @@ async function loadStatus(){
 
 
 
-/*************************************************
- * GPS
- *************************************************/
+/* =========================================================
+   LOCATION
+========================================================= */
 
 function getLocation(){
 
@@ -1111,7 +1855,7 @@ function getLocation(){
   ){
 
     showError(
-      'อุปกรณ์ไม่รองรับ Location'
+      'อุปกรณ์นี้ไม่รองรับ Location'
     );
 
     return;
@@ -1119,120 +1863,152 @@ function getLocation(){
   }
 
 
+  $('locationBtn').disabled =
+    true;
+
+
   $('gpsTitle').textContent =
     'กำลังค้นหาตำแหน่ง...';
 
 
+  $('gpsDetail').textContent =
+    'กรุณารอสักครู่';
+
+
   navigator
-  .geolocation
-  .getCurrentPosition(
+    .geolocation
+    .getCurrentPosition(
 
-    position => {
+      position => {
 
-      locationData = {
+        locationData = {
 
-        latitude:
-          position.coords.latitude,
+          latitude:
+            Number(
+              position.coords.latitude
+            ),
 
-        longitude:
-          position.coords.longitude,
+          longitude:
+            Number(
+              position.coords.longitude
+            ),
 
-        accuracy:
-          position.coords.accuracy ||
-          0
+          accuracy:
+            Number(
+              position.coords.accuracy ||
+              0
+            )
 
-      };
-
-
-      $('gpsTitle').textContent =
-        'ยืนยันตำแหน่งแล้ว ✓';
-
-
-      $('gpsDetail').textContent =
-
-        locationData.latitude
-        .toFixed(6)
-
-        + ', '
-
-        + locationData.longitude
-        .toFixed(6);
+        };
 
 
-      const d =
-        distanceMeters(
+        $('gpsTitle').textContent =
+          'ยืนยันตำแหน่งแล้ว';
 
-          locationData.latitude,
 
-          locationData.longitude,
+        $('gpsDetail').textContent =
 
-          OFFICE_LAT,
+          locationData.latitude
+          .toFixed(6)
 
-          OFFICE_LNG
+          + ', '
 
+          + locationData.longitude
+          .toFixed(6);
+
+
+        const distance =
+          distanceMeters(
+
+            locationData.latitude,
+
+            locationData.longitude,
+
+            OFFICE_LAT,
+
+            OFFICE_LNG
+
+          );
+
+
+        if(
+          distance <=
+          MAX_DISTANCE_M
+        ){
+
+          $('distanceText').className =
+            'area-state ok';
+
+
+          $('distanceText').textContent =
+            '✓ อยู่ในพื้นที่ลงเวลา';
+
+        }
+
+        else{
+
+          $('distanceText').className =
+            'area-state bad';
+
+
+          $('distanceText').textContent =
+            'อยู่นอกพื้นที่ลงเวลา';
+
+        }
+
+
+        $('locationBtn').disabled =
+          false;
+
+
+        updateButton();
+
+      },
+
+
+      error => {
+
+        $('locationBtn').disabled =
+          false;
+
+
+        $('gpsTitle').textContent =
+          'ไม่สามารถรับตำแหน่ง';
+
+
+        $('gpsDetail').textContent =
+          'กรุณาเปิด Location แล้วลองอีกครั้ง';
+
+
+        showError(
+          'ไม่สามารถรับตำแหน่งปัจจุบันได้'
         );
 
-
-      if(
-        d <=
-        MAX_DISTANCE_M
-      ){
-
-        $('distanceText').className =
-          'distance ok';
+      },
 
 
-        $('distanceText').textContent =
-          '✓ อยู่ในพื้นที่ลงเวลา';
+      {
 
-      }
+        enableHighAccuracy:
+          true,
 
-      else{
+        timeout:
+          20000,
 
-        $('distanceText').className =
-          'distance bad';
-
-
-        $('distanceText').textContent =
-          '✕ อยู่นอกพื้นที่ลงเวลา';
+        maximumAge:
+          0
 
       }
 
-
-      updateButton();
-
-    },
-
-    error => {
-
-      showError(
-        'ไม่สามารถรับตำแหน่งได้ กรุณาอนุญาต Location'
-      );
-
-    },
-
-    {
-
-      enableHighAccuracy:
-        true,
-
-      timeout:
-        20000,
-
-      maximumAge:
-        0
-
-    }
-
-  );
+    );
 
 }
 
 
 
-/*************************************************
- * CAMERA
- *************************************************/
+/* =========================================================
+   CAMERA
+========================================================= */
 
 $('camera')
 .addEventListener(
@@ -1269,8 +2045,15 @@ $('camera')
         'block';
 
 
-      $('photoText').style.display =
+      $('photoPlaceholder').style.display =
         'none';
+
+
+      $('photoBox')
+        .classList
+        .add(
+          'has-photo'
+        );
 
 
       updateButton();
@@ -1291,9 +2074,9 @@ $('camera')
 
 
 
-/*************************************************
- * SUBMIT
- *************************************************/
+/* =========================================================
+   SUBMIT
+========================================================= */
 
 async function submitAttendance(){
 
@@ -1309,7 +2092,7 @@ async function submitAttendance(){
   ){
 
     showError(
-      'กรุณายืนยันตำแหน่ง'
+      'กรุณายืนยันตำแหน่งก่อน'
     );
 
     return;
@@ -1322,7 +2105,7 @@ async function submitAttendance(){
   ){
 
     showError(
-      'กรุณาถ่ายรูป'
+      'กรุณาถ่ายรูปก่อน'
     );
 
     return;
@@ -1350,7 +2133,7 @@ async function submitAttendance(){
   ){
 
     showError(
-      'อยู่นอกพื้นที่ลงเวลา'
+      'คุณอยู่นอกพื้นที่ลงเวลา'
     );
 
     return;
@@ -1369,12 +2152,11 @@ async function submitAttendance(){
 
     true,
 
-    mode ===
-    'checkin'
+    mode === 'checkin'
 
-    ? 'กำลังลงเวลาเข้างาน...'
+    ? 'กำลังลงเวลาเข้างาน'
 
-    : 'กำลังลงเวลาออก...',
+    : 'กำลังลงเวลาออก',
 
     'กำลังอัปโหลดรูปและบันทึกข้อมูล'
 
@@ -1411,7 +2193,7 @@ async function submitAttendance(){
 
 
     $('loadingTitle').textContent =
-      'บันทึกเรียบร้อย ✓';
+      'บันทึกสำเร็จ';
 
 
     $('loadingDetail').textContent =
@@ -1424,19 +2206,20 @@ async function submitAttendance(){
 
 
     $('loadingTitle').textContent =
+
       mode === 'checkin'
 
-      ? 'ลงเวลาเข้างานสำเร็จ ✓'
+      ? 'ลงเวลาเข้างานเรียบร้อย'
 
-      : 'ลงเวลาออกสำเร็จ ✓';
+      : 'ลงเวลาออกเรียบร้อย';
 
 
     $('loadingDetail').textContent =
-      'กำลังปิดหน้าต่าง...';
+      'กำลังปิดหน้าต่าง';
 
 
     await wait(
-      800
+      850
     );
 
 
@@ -1483,9 +2266,9 @@ async function submitAttendance(){
 
 
 
-/*************************************************
- * POST
- *************************************************/
+/* =========================================================
+   POST
+========================================================= */
 
 function sendPost(
   requestId
@@ -1580,26 +2363,36 @@ function sendPost(
 
 
   document.body
-  .appendChild(
-    form
-  );
+    .appendChild(
+      form
+    );
 
 
   form.submit();
 
 
   setTimeout(
-    () => form.remove(),
+
+    () => {
+
+      try{
+        form.remove();
+      }
+      catch(e){}
+
+    },
+
     5000
+
   );
 
 }
 
 
 
-/*************************************************
- * RESULT POLLING
- *************************************************/
+/* =========================================================
+   POLLING
+========================================================= */
 
 async function waitForResult(
   requestId
@@ -1644,32 +2437,41 @@ async function waitForResult(
 
 
   throw new Error(
-    'ระบบใช้เวลาบันทึกนานเกินไป กรุณาลองใหม่'
+    'ระบบใช้เวลาบันทึกนานเกินไป'
   );
 
 }
 
 
 
-/*************************************************
- * FLEX
- *************************************************/
+/* =========================================================
+   FLEX
+   ใช้ตัว Flex ล่าสุดที่เราแก้ไว้
+========================================================= */
 
 async function sendFlex(result){
 
-  if(!liff.isInClient()){
+  if(
+    !liff.isInClient()
+  ){
+
     throw new Error(
-      'บันทึกสำเร็จ แต่ต้องเปิดผ่านแอป LINE เพื่อส่ง Flex'
+      'ต้องเปิดผ่านแอป LINE เพื่อส่ง Flex'
     );
+
   }
 
+
   const isCheckout =
-    result.actionType === 'checkout';
+    result.actionType ===
+    'checkout';
+
 
   const name =
     result.name ||
     profile.displayName ||
     'พนักงาน';
+
 
   const body = [
 
@@ -1691,11 +2493,9 @@ async function sendFlex(result){
   ];
 
 
-  /*************************************************
-   * CHECK IN
-   *************************************************/
-
-  if(!isCheckout){
+  if(
+    !isCheckout
+  ){
 
     body.push(
 
@@ -1721,24 +2521,12 @@ async function sendFlex(result){
         contents:[
 
           {
-            type:'box',
-            layout:'vertical',
-            width:'34px',
-            height:'34px',
-            cornerRadius:'17px',
-            backgroundColor:'#D7194A',
-            justifyContent:'center',
-            alignItems:'center',
-
-            contents:[
-              {
-                type:'text',
-                text:'✓',
-                color:'#FFFFFF',
-                weight:'bold',
-                align:'center'
-              }
-            ]
+            type:'text',
+            text:'✓',
+            color:'#D7194A',
+            weight:'bold',
+            size:'lg',
+            flex:0
           },
 
           {
@@ -1752,16 +2540,12 @@ async function sendFlex(result){
           }
 
         ]
+
       }
 
     );
 
   }
-
-
-  /*************************************************
-   * CHECK OUT
-   *************************************************/
 
   else{
 
@@ -1782,11 +2566,6 @@ async function sendFlex(result){
         margin:'lg',
         color:'#F0F0F0'
       },
-
-
-      /*********************************************
-       * WORK TIME SUMMARY
-       *********************************************/
 
       {
         type:'box',
@@ -1809,11 +2588,9 @@ async function sendFlex(result){
 
           {
             type:'text',
-
             text:
               result.workDuration ||
               '-',
-
             size:'xxl',
             weight:'bold',
             color:'#D7194A',
@@ -1823,12 +2600,8 @@ async function sendFlex(result){
           }
 
         ]
+
       },
-
-
-      /*********************************************
-       * CHECKOUT SUCCESS
-       *********************************************/
 
       {
         type:'box',
@@ -1837,29 +2610,16 @@ async function sendFlex(result){
         paddingAll:'14px',
         cornerRadius:'16px',
         backgroundColor:'#F9F1F4',
-        alignItems:'center',
 
         contents:[
 
           {
-            type:'box',
-            layout:'vertical',
-            width:'34px',
-            height:'34px',
-            cornerRadius:'17px',
-            backgroundColor:'#B81746',
-            justifyContent:'center',
-            alignItems:'center',
-
-            contents:[
-              {
-                type:'text',
-                text:'✓',
-                color:'#FFFFFF',
-                weight:'bold',
-                align:'center'
-              }
-            ]
+            type:'text',
+            text:'✓',
+            color:'#B81746',
+            weight:'bold',
+            size:'lg',
+            flex:0
           },
 
           {
@@ -1873,16 +2633,13 @@ async function sendFlex(result){
           }
 
         ]
+
       }
 
     );
 
   }
 
-
-  /*************************************************
-   * FLEX
-   *************************************************/
 
   const flex = {
 
@@ -1893,7 +2650,10 @@ async function sendFlex(result){
       isCheckout
 
       ? 'ลงเวลาออกเรียบร้อย · ' +
-        (result.workDuration || '')
+        (
+          result.workDuration ||
+          ''
+        )
 
       : 'ลงเวลาเข้างานเรียบร้อย',
 
@@ -1904,10 +2664,6 @@ async function sendFlex(result){
 
       size:'mega',
 
-
-      /*************************************************
-       * PHOTO
-       *************************************************/
 
       hero:{
 
@@ -1925,10 +2681,6 @@ async function sendFlex(result){
       },
 
 
-      /*************************************************
-       * RED GRADIENT STYLE HEADER
-       *************************************************/
-
       header:{
 
         type:'box',
@@ -1938,11 +2690,6 @@ async function sendFlex(result){
         paddingAll:'0px',
 
         contents:[
-
-
-          /*********************************************
-           * DARK RED
-           *********************************************/
 
           {
             type:'box',
@@ -1960,23 +2707,16 @@ async function sendFlex(result){
 
               {
                 type:'text',
-
                 text:'SLAY ROIET',
-
                 color:'#FF7896',
-
                 size:'xs',
-
                 weight:'bold'
               }
 
             ]
+
           },
 
-
-          /*********************************************
-           * RED
-           *********************************************/
 
           {
             type:'box',
@@ -1990,24 +2730,20 @@ async function sendFlex(result){
             paddingTop:'5px',
             paddingBottom:'7px',
 
-            alignItems:'center',
-
             contents:[
 
               {
                 type:'text',
 
                 text:
+
                   isCheckout
                   ? 'CHECK OUT'
                   : 'CHECK IN',
 
                 color:'#FFFFFF',
-
                 size:'xxl',
-
                 weight:'bold',
-
                 flex:1
               },
 
@@ -2025,21 +2761,17 @@ async function sendFlex(result){
           },
 
 
-          /*********************************************
-           * BRIGHT RED
-           *********************************************/
-
           {
             type:'box',
 
             layout:'vertical',
 
-            backgroundColor:'#A80028',
+            backgroundColor:'#D7194A',
 
             paddingStart:'20px',
             paddingEnd:'20px',
-            paddingTop:'5px',
-            paddingBottom:'6px',
+            paddingTop:'7px',
+            paddingBottom:'13px',
 
             contents:[
 
@@ -2051,46 +2783,8 @@ async function sendFlex(result){
                   ? 'ลงเวลาออกงาน'
                   : 'ลงเวลาเข้างาน',
 
-                color:'#FFD8E1',
-
-                size:'xs',
-
-                weight:'bold'
-              }
-
-            ]
-
-          },
-
-
-          /*********************************************
-           * PINK RED
-           *********************************************/
-
-          {
-            type:'box',
-
-            layout:'vertical',
-
-            backgroundColor:'#D7194A',
-
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'5px',
-            paddingBottom:'13px',
-
-            contents:[
-
-              {
-                type:'text',
-
-                text:
-                  'SLAY ROIET · STAFF ATTENDANCE',
-
                 color:'#FFFFFF',
-
-                size:'xxs',
-
+                size:'xs',
                 weight:'bold'
               }
 
@@ -2103,10 +2797,6 @@ async function sendFlex(result){
       },
 
 
-      /*************************************************
-       * BODY
-       *************************************************/
-
       body:{
 
         type:'box',
@@ -2117,16 +2807,11 @@ async function sendFlex(result){
 
         spacing:'md',
 
-        backgroundColor:'#FFFFFF',
-
-        contents:body
+        contents:
+          body
 
       },
 
-
-      /*************************************************
-       * FOOTER
-       *************************************************/
 
       footer:{
 
@@ -2136,10 +2821,7 @@ async function sendFlex(result){
 
         paddingAll:'16px',
 
-        backgroundColor:'#FFFFFF',
-
         contents:[
-
 
           {
             type:'button',
@@ -2158,9 +2840,9 @@ async function sendFlex(result){
 
                 isCheckout
 
-                ? '✅ เช็คชื่อเข้างาน'
+                ? 'เช็คชื่อเข้างาน'
 
-                : '⏰ ลงชื่อออกงาน',
+                : 'ลงชื่อออกงาน',
 
               uri:
                 LIFF_URL
@@ -2169,20 +2851,13 @@ async function sendFlex(result){
 
           },
 
-
           {
             type:'text',
-
-            text:'SLAY ROIET',
-
+            text:'SLAY ROIET · STAFF',
             size:'xxs',
-
-            color:'#C6C6C6',
-
+            color:'#BBBBBB',
             align:'center',
-
             margin:'md'
-
           }
 
         ]
@@ -2202,9 +2877,9 @@ async function sendFlex(result){
 
 
 
-/*************************************************
- * FLEX ROW
- *************************************************/
+/* =========================================================
+   FLEX ROW
+========================================================= */
 
 function flexRow(
   label,
@@ -2213,43 +2888,26 @@ function flexRow(
 
   return {
 
-    type:
-      'box',
+    type:'box',
 
-    layout:
-      'horizontal',
+    layout:'horizontal',
 
-    paddingTop:
-      '4px',
+    paddingTop:'4px',
 
-    paddingBottom:
-      '4px',
+    paddingBottom:'4px',
 
     contents:[
 
       {
-
-        type:
-          'text',
-
-        text:
-          label,
-
-        size:
-          'sm',
-
-        color:
-          '#888888',
-
-        flex:
-          5
-
+        type:'text',
+        text:label,
+        size:'sm',
+        color:'#888888',
+        flex:5
       },
 
       {
-
-        type:
-          'text',
+        type:'text',
 
         text:
           String(
@@ -2257,24 +2915,12 @@ function flexRow(
             '-'
           ),
 
-        size:
-          'sm',
-
-        weight:
-          'bold',
-
-        color:
-          '#111111',
-
-        align:
-          'end',
-
-        flex:
-          6,
-
-        wrap:
-          true
-
+        size:'sm',
+        color:'#111111',
+        weight:'bold',
+        align:'end',
+        flex:6,
+        wrap:true
       }
 
     ]
@@ -2285,9 +2931,9 @@ function flexRow(
 
 
 
-/*************************************************
- * JSONP
- *************************************************/
+/* =========================================================
+   JSONP
+========================================================= */
 
 function jsonp(
   params
@@ -2329,7 +2975,8 @@ function jsonp(
           callback:
             callback,
 
-          _:Date.now()
+          _:
+            Date.now()
 
         });
 
@@ -2426,9 +3073,9 @@ function jsonp(
 
 
 
-/*************************************************
- * PHOTO
- *************************************************/
+/* =========================================================
+   IMAGE COMPRESS
+========================================================= */
 
 function compressImage(
   file
@@ -2541,6 +3188,10 @@ function compressImage(
             };
 
 
+          image.onerror =
+            reject;
+
+
           image.src =
             event.target.result;
 
@@ -2563,9 +3214,9 @@ function compressImage(
 
 
 
-/*************************************************
- * DISTANCE
- *************************************************/
+/* =========================================================
+   DISTANCE
+========================================================= */
 
 function distanceMeters(
   lat1,
@@ -2579,10 +3230,10 @@ function distanceMeters(
 
 
   const rad =
-    d =>
-      d *
-      Math.PI /
-      180;
+    value =>
+    Number(value) *
+    Math.PI /
+    180;
 
 
   const p1 =
@@ -2593,25 +3244,24 @@ function distanceMeters(
     rad(lat2);
 
 
-  const dp =
+  const dLat =
     rad(
-      lat2 -
-      lat1
+      Number(lat2) -
+      Number(lat1)
     );
 
 
-  const dl =
+  const dLng =
     rad(
-      lng2 -
-      lng1
+      Number(lng2) -
+      Number(lng1)
     );
 
 
   const a =
 
     Math.sin(
-      dp /
-      2
+      dLat / 2
     ) ** 2
 
     +
@@ -2625,8 +3275,7 @@ function distanceMeters(
     *
 
     Math.sin(
-      dl /
-      2
+      dLng / 2
     ) ** 2;
 
 
@@ -2652,9 +3301,9 @@ function distanceMeters(
 
 
 
-/*************************************************
- * HELPERS
- *************************************************/
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function createRequestId(){
 
@@ -2675,8 +3324,8 @@ function createRequestId(){
     '_' +
 
     Math.random()
-    .toString(36)
-    .substring(2)
+      .toString(36)
+      .substring(2)
 
   );
 
@@ -2761,7 +3410,7 @@ function showError(
     'message error';
 
 
-  $('message').innerHTML =
+  $('message').textContent =
     String(
       message
     );
@@ -2769,7 +3418,6 @@ function showError(
 }
 
 </script>
-
 
 </body>
 </html>

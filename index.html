@@ -2152,20 +2152,15 @@ async function waitForResult(
 
 async function sendFlex(result){
 
-  if(
-    !liff.isInClient()
-  ){
-
+  if(!liff.isInClient()){
     throw new Error(
       'ต้องเปิดผ่านแอป LINE เพื่อส่ง Flex'
     );
-
   }
 
 
   const isCheckout =
-    result.actionType ===
-    'checkout';
+    result.actionType === 'checkout';
 
 
   const name =
@@ -2174,267 +2169,13 @@ async function sendFlex(result){
     'พนักงาน';
 
 
-  const body = [
-
-    {
-      type:'text',
-      text:name,
-      size:'xl',
-      weight:'bold',
-      color:'#111111',
-      wrap:true
-    },
-
-    {
-      type:'separator',
-      margin:'lg',
-      color:'#F0F0F0'
-    }
-
-  ];
-
-
-  /* CHECK IN */
-
-  if(
-    !isCheckout
-  ){
-
-    body.push(
-
-      flexRow(
-        'วันที่',
-        result.date
-      ),
-
-      flexRow(
-        'เวลาเข้า',
-        result.checkInTime
-      ),
-
-      {
-        type:'box',
-        layout:'horizontal',
-        margin:'lg',
-        paddingAll:'14px',
-        cornerRadius:'16px',
-        backgroundColor:'#FFF0F3',
-        alignItems:'center',
-
-        contents:[
-
-          {
-            type:'box',
-            layout:'vertical',
-            width:'34px',
-            height:'34px',
-            cornerRadius:'17px',
-            backgroundColor:'#D7194A',
-            justifyContent:'center',
-            alignItems:'center',
-
-            contents:[
-              {
-                type:'text',
-                text:'✓',
-                color:'#FFFFFF',
-                weight:'bold',
-                align:'center'
-              }
-            ]
-          },
-
-          {
-            type:'text',
-            text:'ลงเวลาเข้างานเรียบร้อย',
-            color:'#A71137',
-            weight:'bold',
-            size:'sm',
-            margin:'md',
-            flex:1
-          }
-
-        ]
-      }
-
-    );
-
-  }
-
-
-  /* CHECK OUT */
-
-  else{
-
-    body.push(
-
-      flexRow(
-        'เวลาเข้า',
-        result.checkInTime
-      ),
-
-      flexRow(
-        'เวลาออก',
-        result.checkOutTime
-      ),
-
-      {
-        type:'separator',
-        margin:'lg',
-        color:'#F0F0F0'
-      },
-
-      {
-        type:'box',
-        layout:'vertical',
-        margin:'lg',
-        paddingAll:'20px',
-        cornerRadius:'20px',
-        backgroundColor:'#FFF0F4',
-
-        contents:[
-
-          {
-            type:'text',
-            text:'เวลาในการทำงาน',
-            size:'sm',
-            weight:'bold',
-            color:'#A90032',
-            align:'center'
-          },
-
-          {
-            type:'text',
-
-            text:
-              result.workDuration ||
-              '-',
-
-            size:'xxl',
-            weight:'bold',
-            color:'#D7194A',
-            align:'center',
-            margin:'md',
-            wrap:true
-          },
-
-          {
-            type:'box',
-            layout:'horizontal',
-            margin:'lg',
-            height:'6px',
-
-            contents:[
-
-              {
-                type:'box',
-                layout:'vertical',
-                backgroundColor:'#32000D',
-                flex:1,
-                contents:[]
-              },
-
-              {
-                type:'box',
-                layout:'vertical',
-                backgroundColor:'#62001D',
-                flex:1,
-                contents:[]
-              },
-
-              {
-                type:'box',
-                layout:'vertical',
-                backgroundColor:'#A90032',
-                flex:1,
-                contents:[]
-              },
-
-              {
-                type:'box',
-                layout:'vertical',
-                backgroundColor:'#D7194A',
-                flex:1,
-                contents:[]
-              },
-
-              {
-                type:'box',
-                layout:'vertical',
-                backgroundColor:'#F1466D',
-                flex:1,
-                contents:[]
-              }
-
-            ]
-          }
-
-        ]
-      },
-
-      {
-        type:'box',
-        layout:'horizontal',
-        margin:'lg',
-        paddingAll:'14px',
-        cornerRadius:'16px',
-        backgroundColor:'#F9F1F4',
-        alignItems:'center',
-
-        contents:[
-
-          {
-            type:'box',
-            layout:'vertical',
-            width:'34px',
-            height:'34px',
-            cornerRadius:'17px',
-            backgroundColor:'#B81746',
-            justifyContent:'center',
-            alignItems:'center',
-
-            contents:[
-              {
-                type:'text',
-                text:'✓',
-                color:'#FFFFFF',
-                weight:'bold',
-                align:'center'
-              }
-            ]
-          },
-
-          {
-            type:'text',
-            text:'ลงเวลาออกเรียบร้อย',
-            color:'#97183B',
-            weight:'bold',
-            size:'sm',
-            margin:'md',
-            flex:1
-          }
-
-        ]
-      }
-
-    );
-
-  }
-
-
-
   const flex = {
 
     type:'flex',
 
     altText:
-
       isCheckout
-        ? 'ลงเวลาออกเรียบร้อย · ' +
-          (
-            result.workDuration ||
-            ''
-          )
+        ? 'ลงเวลาออกเรียบร้อย'
         : 'ลงเวลาเข้างานเรียบร้อย',
 
 
@@ -2445,14 +2186,15 @@ async function sendFlex(result){
       size:'mega',
 
 
-      /* PHOTO */
+      /* =========================
+         PHOTO
+      ========================= */
 
       hero:{
 
         type:'image',
 
-        url:
-          result.photoUrl,
+        url:result.photoUrl,
 
         size:'full',
 
@@ -2463,7 +2205,10 @@ async function sendFlex(result){
       },
 
 
-      /* RED GRADIENT STYLE */
+      /* =========================
+         HEADER
+         เรียบ / บาง / ทันสมัย
+      ========================= */
 
       header:{
 
@@ -2471,193 +2216,52 @@ async function sendFlex(result){
 
         layout:'vertical',
 
-        paddingAll:'0px',
+        paddingAll:'18px',
+
+        backgroundColor:
+          isCheckout
+            ? '#7B001F'
+            : '#A5002E',
 
         contents:[
 
-
           {
-            type:'box',
-            layout:'vertical',
-            backgroundColor:'#170006',
+            type:'text',
 
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'15px',
-            paddingBottom:'5px',
+            text:
+              isCheckout
+                ? 'ลงเวลาออก'
+                : 'ลงเวลาเข้า',
 
-            contents:[
+            color:'#FFFFFF',
 
-              {
-                type:'text',
-                text:'SLAY ROIET',
-                color:'#FF9AAF',
-                size:'xs',
-                weight:'bold'
-              }
+            size:'xl',
 
-            ]
+            weight:'bold'
           },
 
-
           {
-            type:'box',
-            layout:'vertical',
-            backgroundColor:'#31000D',
+            type:'text',
 
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'3px',
-            paddingBottom:'3px',
+            text:'SLAY ROIET',
 
-            contents:[
+            color:'#FFB7C8',
 
-              {
-                type:'text',
+            size:'xs',
 
-                text:
+            weight:'bold',
 
-                  isCheckout
-                    ? 'CHECK OUT'
-                    : 'CHECK IN',
-
-                color:'#FFFFFF',
-                size:'xxl',
-                weight:'bold'
-              }
-
-            ]
-          },
-
-
-          {
-            type:'box',
-            layout:'horizontal',
-            backgroundColor:'#570018',
-
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'5px',
-            paddingBottom:'5px',
-
-            alignItems:'center',
-
-            contents:[
-
-              {
-                type:'text',
-
-                text:
-
-                  isCheckout
-                    ? 'ลงเวลาออกงาน'
-                    : 'ลงเวลาเข้างาน',
-
-                color:'#FFD7E0',
-
-                size:'xs',
-
-                weight:'bold',
-
-                flex:1
-              },
-
-              {
-                type:'text',
-                text:'✓',
-                color:'#FFFFFF',
-                size:'lg',
-                weight:'bold',
-                align:'end'
-              }
-
-            ]
-          },
-
-
-          {
-            type:'box',
-            layout:'vertical',
-            backgroundColor:'#7D0025',
-
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'4px',
-            paddingBottom:'4px',
-
-            contents:[
-
-              {
-                type:'text',
-                text:'STAFF ATTENDANCE',
-                color:'#FFE7ED',
-                size:'xxs',
-                weight:'bold'
-              }
-
-            ]
-          },
-
-
-          {
-            type:'box',
-            layout:'vertical',
-            backgroundColor:'#A90032',
-
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'4px',
-            paddingBottom:'4px',
-
-            contents:[
-
-              {
-                type:'text',
-                text:'SLAY ROIET',
-                color:'#FFFFFF',
-                size:'xxs',
-                weight:'bold'
-              }
-
-            ]
-          },
-
-
-          {
-            type:'box',
-            layout:'vertical',
-            backgroundColor:'#D7194A',
-
-            paddingStart:'20px',
-            paddingEnd:'20px',
-            paddingTop:'4px',
-            paddingBottom:'11px',
-
-            contents:[
-
-              {
-                type:'text',
-
-                text:
-
-                  isCheckout
-                    ? 'ลงเวลาออกเรียบร้อย'
-                    : 'ลงเวลาเข้างานเรียบร้อย',
-
-                color:'#FFFFFF',
-
-                size:'xxs',
-
-                weight:'bold'
-              }
-
-            ]
+            margin:'xs'
           }
 
         ]
 
       },
 
+
+      /* =========================
+         BODY
+      ========================= */
 
       body:{
 
@@ -2671,10 +2275,175 @@ async function sendFlex(result){
 
         backgroundColor:'#FFFFFF',
 
-        contents:body
+        contents:[
+
+
+          /* NAME */
+
+          {
+            type:'text',
+
+            text:name,
+
+            size:'xl',
+
+            weight:'bold',
+
+            color:'#111111',
+
+            wrap:true
+          },
+
+
+          {
+            type:'separator',
+
+            margin:'md',
+
+            color:'#EEEEEE'
+          },
+
+
+          /* CHECK IN */
+
+          ...(
+            !isCheckout
+
+            ? [
+
+                simpleRow(
+                  'วันที่',
+                  result.date
+                ),
+
+                simpleRow(
+                  'เวลาเข้า',
+                  result.checkInTime
+                ),
+
+                {
+                  type:'box',
+
+                  layout:'horizontal',
+
+                  margin:'lg',
+
+                  paddingAll:'13px',
+
+                  cornerRadius:'14px',
+
+                  backgroundColor:'#FFF1F4',
+
+                  contents:[
+
+                    {
+                      type:'text',
+
+                      text:'✓',
+
+                      color:'#D7194A',
+
+                      weight:'bold',
+
+                      flex:0
+                    },
+
+                    {
+                      type:'text',
+
+                      text:'ลงเวลาเรียบร้อย',
+
+                      color:'#B0163D',
+
+                      weight:'bold',
+
+                      size:'sm',
+
+                      margin:'md'
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            : [
+
+                simpleRow(
+                  'เวลาเข้า',
+                  result.checkInTime
+                ),
+
+                simpleRow(
+                  'เวลาออก',
+                  result.checkOutTime
+                ),
+
+                {
+                  type:'box',
+
+                  layout:'vertical',
+
+                  margin:'lg',
+
+                  paddingAll:'18px',
+
+                  cornerRadius:'16px',
+
+                  backgroundColor:'#FFF1F4',
+
+                  contents:[
+
+                    {
+                      type:'text',
+
+                      text:'เวลาในการทำงาน',
+
+                      color:'#A71A3C',
+
+                      size:'xs',
+
+                      weight:'bold',
+
+                      align:'center'
+                    },
+
+                    {
+                      type:'text',
+
+                      text:
+                        result.workDuration ||
+                        '-',
+
+                      color:'#D7194A',
+
+                      size:'xxl',
+
+                      weight:'bold',
+
+                      align:'center',
+
+                      margin:'sm',
+
+                      wrap:true
+                    }
+
+                  ]
+
+                }
+
+              ]
+          )
+
+        ]
 
       },
 
+
+      /* =========================
+         FOOTER
+      ========================= */
 
       footer:{
 
@@ -2702,30 +2471,14 @@ async function sendFlex(result){
               type:'uri',
 
               label:
-
                 isCheckout
                   ? 'เช็คชื่อเข้างาน'
                   : 'ลงชื่อออกงาน',
 
-              uri:
-                LIFF_URL
+              uri:LIFF_URL
 
             }
 
-          },
-
-          {
-            type:'text',
-
-            text:'SLAY ROIET · STAFF ATTENDANCE',
-
-            size:'xxs',
-
-            color:'#C2B7BB',
-
-            align:'center',
-
-            margin:'md'
           }
 
         ]
@@ -2949,8 +2702,56 @@ function jsonp(
 }
 
 
+function simpleRow(label,value){
 
+  return {
+
+    type:'box',
+
+    layout:'horizontal',
+
+    paddingTop:'4px',
+
+    paddingBottom:'4px',
+
+    contents:[
+
+      {
+        type:'text',
+
+        text:label,
+
+        color:'#999999',
+
+        size:'sm',
+
+        flex:5
+      },
+
+      {
+        type:'text',
+
+        text:String(value || '-'),
+
+        color:'#111111',
+
+        size:'sm',
+
+        weight:'bold',
+
+        align:'end',
+
+        flex:6
+      }
+
+    ]
+
+  };
+
+}
 /* =========================================================
+
+
    COMPRESS IMAGE
 ========================================================= */
 
